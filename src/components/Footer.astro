@@ -10,9 +10,20 @@ const year = new Date().getFullYear();
           <span class="text-xl font-bold tracking-tight text-text-primary">LocAcademy</span>
           <span class="text-xs text-text-muted font-normal mt-0.5">by ODuo</span>
         </div>
-        <p class="text-sm text-text-muted leading-relaxed mt-4">
+        <p class="text-sm text-text-muted leading-relaxed mt-4 mb-6">
           Educação prática pra dono de locadora de equipamentos. Sem teoria de palestra.
         </p>
+        {/* Logo ODuo: usa PNG quando Lucas salvar em public/logos/oduo-white.png. Ate la, fallback texto. */}
+        <a href="https://oduo.com.br" class="inline-flex items-center gap-2 text-text-muted hover:text-text-primary text-xs">
+          <span>Um produto da</span>
+          <img
+            src="/logos/oduo-white.png"
+            alt="ODuo"
+            class="h-6 w-auto opacity-70"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"
+          />
+          <span style="display:none;" class="font-bold text-text-primary">ODuo</span>
+        </a>
       </div>
 
       <div>

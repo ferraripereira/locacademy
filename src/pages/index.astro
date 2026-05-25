@@ -85,9 +85,37 @@ const stats = [
   { value: 'R$ 185M', label: 'em vendas gerados pra clientes' },
   { value: 'XX', label: 'cidades no Brasil' },
 ];
+
+const courseJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'LocAcademy — Marketing, Vendas e Gestão pra Locadoras',
+  description:
+    'Curso gratuito para donos de locadora de equipamentos. 3 módulos: Gestão, Vendas e Marketing aplicados ao nicho de locação.',
+  provider: {
+    '@type': 'EducationalOrganization',
+    name: 'LocAcademy by ODuo',
+    sameAs: 'https://academy.oduo.com.br',
+  },
+  inLanguage: 'pt-BR',
+  educationalLevel: 'Beginner',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'BRL',
+    availability: 'https://schema.org/InStock',
+  },
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'online',
+    courseWorkload: 'PT5H',
+  },
+};
 ---
 
 <BaseLayout>
+  <script type="application/ld+json" set:html={JSON.stringify(courseJsonLd)} />
+
   <!-- HERO -->
   <section class="relative overflow-hidden">
     <div class="container-page pt-24 pb-20 lg:pt-32 lg:pb-28">

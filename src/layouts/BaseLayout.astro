@@ -19,6 +19,10 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
+
+// GA4 — Lucas: cole o ID GA4 (formato G-XXXXXXXX) em .env como PUBLIC_GA4_ID,
+// ou substitua direto aqui. Se vazio, o script de tracking nao e carregado.
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID || '';
 ---
 
 <!doctype html>
@@ -26,6 +30,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050B17" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -41,11 +46,43 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="LocAcademy" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'EducationalOrganization',
+      name: 'LocAcademy',
+      alternateName: 'LocAcademy by ODuo',
+      url: 'https://academy.oduo.com.br',
+      logo: 'https://academy.oduo.com.br/logos/oduo-blue-on-white.png',
+      description: 'Escola digital de marketing, vendas e gestão para donos de locadora de equipamentos.',
+      parentOrganization: {
+        '@type': 'Organization',
+        name: 'ODuo Assessoria',
+        url: 'https://oduo.com.br',
+      },
+      areaServed: 'BR',
+      inLanguage: 'pt-BR',
+    })} />
+
+    {/* Google Analytics 4 — carregado somente se PUBLIC_GA4_ID estiver setado */}
+    {GA4_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+        <script is:inline define:vars={{ GA4_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', GA4_ID, { anonymize_ip: true });
+        </script>
+      </>
+    )}
   </head>
   <body class="bg-bg-base text-text-secondary">
     <Header />

@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const lastUpdate = '25 de maio de 2026';
+---
+
+<BaseLayout
+  title="Política de Privacidade — LocAcademy"
+  description="Como o LocAcademy trata seus dados pessoais. Política de privacidade em conformidade com a LGPD."
+>
+  <article class="container-page pt-16 pb-20 lg:pt-24">
+    <div class="max-w-narrow mx-auto">
+      <header class="mb-12">
+        <p class="text-sm text-text-muted mb-3">Última atualização: {lastUpdate}</p>
+        <h1 class="display text-4xl lg:text-5xl font-extrabold text-text-primary leading-tight tracking-tight">
+          Política de Privacidade
+        </h1>
+      </header>
+
+      <div class="prose-locacademy space-y-8 text-text-secondary leading-relaxed">
+        <section>
+          <h2 class="text-2xl font-bold text-text-primary mb-4">1. Quem somos</h2>
+          <p>
+            O LocAcademy é um produto educacional da <strong class="text-text-primary">ODuo Assessoria</strong>,
+            CNPJ [a preencher], com sede em Campinas/SP. Esta política descreve como coletamos,
+            usamos e protegemos seus dados pessoais quando você se cadastra ou interage com o LocAcademy.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-text-primary mb-4">2. Dados que coletamos</h2>
+          <p>Quando você se cadastra no LocAcademy, coletamos:</p>
+          <ul class="list-disc list-inside space-y-2 ml-4 mt-3">
+            <li>Nome completo</li>
+            <li>E-mail</li>
+            <li>Telefone (WhatsApp)</li>
+            <li>Nome, cidade e estado da sua locadora</li>
+            <li>Seu cargo na empresa</li>
+            <li>Quantidade de equipamentos na frota</li>
+            <li>Origem do cadastro (como você nos conheceu)</li>
+          </ul>
+          <p class="mt-4">
+            Também coletamos automaticamente dados de navegação (IP, navegador, páginas visitadas)
+            via cookies e ferramentas como Google Analytics.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-text-primary mb-4">3. Por que usamos seus dados</h2>
+          <ul class="list-disc list-inside space-y-2 ml-4">
+            <li>Liberar seu acesso ao curso</li>
+            <li>Enviar conteúdos educacionais relacionados ao LocAcademy e à ODuo</li>
+            <li>Personalizar comunicações com base no seu perfil (porte da locadora, região, cargo)</li>
+            <li>Melhorar nosso conteúdo e plataforma</li>
+            <li>Cumprir obrigações legais</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-text-primary mb-4">4. Com quem compartilhamos</h2>
+          <p>
+            Seus dados são compartilhados apenas com fornecedores que nos ajudam a operar o LocAcademy:
+          </p>
+          <ul class="list-disc list-inside space-y-2 ml-4 mt-3">
+            <li><strong class="text-text-primary">Hotmart</strong> — plataforma que hospeda o curso</li>
+            <li><strong class="text-text-primary">Google Analytics</strong> — análise de tráfego</li>
+            <li><strong class="text-text-primary">Vercel</strong> — hospedagem do site</li>
+          </ul>
+          <p class="mt-4">
+            Nunca vendemos seus dados para terceiros.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-text-primary mb-4">5. Seus direitos (LGPD)</h2>
+          <p>Conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018), você tem direito a:</p>
+          <ul class="list-disc list-inside space-y-2 ml-4 mt-3">
+            <li>Acessar seus dados pessoais</li>
+            <li>Corrigir dados incompletos ou desatualizados</li>
+            <li>Solicitar a exclusão dos seus dados</li>
+            <li>Revogar consentimento a qualquer momento</li>
+            <li>Pedir portabilidade dos seus dados</li>
+          </ul>
+          <p class="mt-4">
+            Para exercer qualquer um desses direitos, envie um e-mail para
+            <a href="mailto:contato@oduo.com.br" class="text-brand-accent hover:underline">
+              contato@oduo.com.br
+            </a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-text-primary mb-4">6. Cookies</h2>
+          <p>
+            Usamos cookies essenciais para o funcionamento do site e cookies de análise para entender
+            como você usa o LocAcademy. Você pode desativar cookies nas configurações do seu navegador,
+            mas algumas funcionalidades podem ficar prejudicadas.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-text-primary mb-4">7. Mudanças nesta política</h2>
+          <p>
+            Podemos atualizar esta política periodicamente. Quando isso acontecer, atualizaremos a
+            data no topo do documento. Mudanças relevantes serão comunicadas por e-mail.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-text-primary mb-4">8. Contato</h2>
+          <p>
+            Dúvidas sobre esta política? Fale com a gente:
+            <a href="mailto:contato@oduo.com.br" class="text-brand-accent hover:underline">
+              contato@oduo.com.br
+            </a>
+          </p>
+        </section>
+      </div>
+
+      <p class="mt-16 text-sm text-text-muted italic">
+        ⚠️ Documento placeholder. Lucas precisa revisar com assessoria jurídica antes do lançamento
+        oficial. Preencher CNPJ da ODuo, validar lista de fornecedores e adequar à realidade real.
+      </p>
+    </div>
+  </article>
+</BaseLayout>
