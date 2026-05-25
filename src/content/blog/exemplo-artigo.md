@@ -1,15 +1,13 @@
 ---
-title: "Como precificar locação de equipamentos: o guia completo"
-description: "Aprenda a calcular o preço justo da diária de cada equipamento da sua frota — com fórmula, exemplo prático e os 5 erros mais comuns."
-pubDate: 2026-06-01
+title: "Bem-vindo ao LocAcademy"
+description: "A primeira escola digital 100% focada em dono de locadora de equipamentos. Conteúdo prático de marketing, vendas e gestão."
+pubDate: 2026-05-25
 author: "Equipe LocAcademy"
-keywords: ["precificação locação", "preço diária equipamento", "como calcular locação"]
-draft: true
+keywords: ["locadora de equipamentos", "marketing locadora", "gestão locadora"]
+draft: false
 ---
 
-> Esse é um artigo de exemplo. Substitua pelo conteúdo real seguindo o briefing do **doc 05** (`05-briefings-artigos-seo.md`).
->
-> Mantenha `draft: true` enquanto estiver escrevendo — o artigo só aparece publicado quando virar `draft: false`.
+> Esse é um post de boas-vindas placeholder. Substitua ou mantenha quando os artigos reais (doc 05) entrarem.
 
 ## Por que precificação no chute destrói locadora
 
