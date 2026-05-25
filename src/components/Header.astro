@@ -1,0 +1,31 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+
+const navLinks = [
+  { href: '/curso', label: 'Curso' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-bg-base/80 backdrop-blur-md border-b border-border-subtle">
+  <div class="container-page flex items-center justify-between h-16">
+    <Logo />
+
+    <nav class="hidden md:flex items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-text-secondary hover:text-text-primary text-sm font-medium"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <Button href="/cadastro" size="sm">Acessar grátis</Button>
+  </div>
+</header>

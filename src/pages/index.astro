@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+
+const modules = [
+  {
+    number: '01',
+    title: 'GESTÃO',
+    tagline: 'Como tocar a operação sem trabalhar no escuro.',
+    bullets: [
+      'Precificação de equipamentos sem chutômetro',
+      'Controle financeiro básico que toda locadora precisa ter',
+      'Indicadores que mostram se o negócio tá indo ou parado',
+    ],
+  },
+  {
+    number: '02',
+    title: 'VENDAS',
+    tagline: 'Processo comercial que funciona pra locação.',
+    bullets: [
+      'Como abordar cliente novo sem soar desesperado',
+      'Estruturar proposta que fecha mais rápido',
+      'Reativar cliente inativo (o ouro escondido da sua locadora)',
+    ],
+  },
+  {
+    number: '03',
+    title: 'MARKETING',
+    tagline: 'Como ser achado pelo cliente certo, na hora certa.',
+    bullets: [
+      'Posicionamento digital pra locadora ser encontrada no Google',
+      'Redes sociais que geram pedido de orçamento (não só curtida)',
+      'Tráfego pago aplicado ao nicho de locação',
+    ],
+  },
+];
+
+const instructors = [
+  {
+    name: 'Lucas Pereira',
+    role: 'Sócio da ODuo. Marketing e posicionamento pra locação.',
+    photo: '/fotos/lucas.jpg',
+  },
+  {
+    name: 'Murilo',
+    role: '[Cargo na ODuo]. [Especialidade].',
+    photo: '/fotos/murilo.jpg',
+  },
+  {
+    name: 'João',
+    role: '[Cargo na ODuo]. [Especialidade].',
+    photo: '/fotos/joao.jpg',
+  },
+];
+
+const problems = [
+  {
+    icon: '💸',
+    title: 'Preço no chute',
+    text: 'Você sabe quanto custa de verdade locar cada equipamento da sua frota? A maioria não sabe.',
+  },
+  {
+    icon: '📵',
+    title: 'Marketing zero',
+    text: 'Quantos clientes novos chegaram este mês porque te acharam no Google? Pois é.',
+  },
+  {
+    icon: '⏳',
+    title: 'Venda reativa',
+    text: 'Você corre atrás do cliente ou espera ele ligar? Locadora que espera, perde.',
+  },
+];
+
+const audience = [
+  'Você é dono ou sócio de uma locadora de equipamentos',
+  'Você é gestor responsável pelo crescimento da locadora',
+  'Você sente que tá empacado e não sabe exatamente onde mexer',
+  'Você nunca recebeu treinamento formal de marketing, vendas ou gestão',
+  'Você quer parar de competir só por preço',
+];
+
+const stats = [
+  { value: '+100', label: 'Locadoras atendidas pela ODuo' },
+  { value: '+5 anos', label: 'de mercado' },
+  { value: 'R$ 185M', label: 'em vendas gerados pra clientes' },
+  { value: 'XX', label: 'cidades no Brasil' },
+];
+---
+
+<BaseLayout>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="container-page pt-24 pb-20 lg:pt-32 lg:pb-28">
+      <div class="max-w-4xl">
+        <h1 class="display text-4xl sm:text-5xl lg:text-7xl font-extrabold text-text-primary leading-[1.05] tracking-tight">
+          A educação que sua locadora precisa pra parar de ser tocada no improviso.
+        </h1>
+        <p class="mt-8 text-lg lg:text-xl text-text-secondary max-w-3xl leading-relaxed">
+          LocAcademy é a primeira escola digital 100% focada em donos e gestores de locadora
+          de equipamentos. Marketing, vendas e gestão sem teoria de palestra.
+          <span class="text-text-primary font-medium">Gratuito enquanto durar o MVP.</span>
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <Button href="/cadastro" size="lg">Acessar o curso grátis</Button>
+          <Button href="/curso" variant="outline" size="lg">Ver o que tem dentro</Button>
+        </div>
+        <p class="mt-6 text-sm text-text-muted">
+          by ODuo — a casa que já ajudou +100 locadoras a vender mais.
+        </p>
+      </div>
+    </div>
+
+    <!-- gradiente sutil de fundo -->
+    <div class="absolute inset-0 -z-10 pointer-events-none">
+      <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-3xl"></div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="section bg-bg-elevated/30">
+    <div class="container-page">
+      <div class="max-w-3xl mb-16">
+        <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
+          Locação não cresce no improviso. E você sabe disso.
+        </h2>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          A maioria das locadoras desse país é tocada no chute. Preço de diária definido por feeling.
+          Cliente captado por indicação. Marketing que se resume ao "Vou postar uma foto no Instagram
+          quando lembrar". E aí o dono passa o mês inteiro correndo atrás, sem entender por que o
+          faturamento não anda.
+        </p>
+        <p class="text-lg text-text-primary font-medium mt-4">
+          Não é falta de esforço. É falta de método.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {
+          problems.map((problem) => (
+            <div class="p-8 bg-bg-elevated border border-border-subtle rounded-lg">
+              <div class="text-3xl mb-4">{problem.icon}</div>
+              <h3 class="text-xl font-semibold text-text-primary mb-3">{problem.title}</h3>
+              <p class="text-text-secondary leading-relaxed">{problem.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- MÓDULOS -->
+  <section class="section">
+    <div class="container-page">
+      <div class="max-w-3xl mb-16">
+        <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
+          3 módulos. Direto ao ponto. Sem encheção.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {
+          modules.map((mod) => (
+            <div class="p-8 bg-bg-elevated border border-border-subtle rounded-lg hover:border-brand-accent/50 transition-colors">
+              <span class="text-brand-accent text-sm font-mono">MÓDULO {mod.number}</span>
+              <h3 class="text-2xl font-bold text-text-primary mt-2 mb-2">{mod.title}</h3>
+              <p class="text-brand-accent text-sm italic mb-6">{mod.tagline}</p>
+              <ul class="space-y-3">
+                {mod.bullets.map((bullet) => (
+                  <li class="flex gap-3 text-text-secondary text-sm leading-relaxed">
+                    <span class="text-brand-accent mt-1">→</span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-12 text-center">
+        <Button href="/cadastro" size="lg">Quero acessar os 3 módulos</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUTORES -->
+  <section class="section bg-bg-elevated/30">
+    <div class="container-page">
+      <div class="max-w-3xl mb-16">
+        <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
+          Quem tá do outro lado da câmera.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {
+          instructors.map((inst) => (
+            <div class="text-center">
+              <div class="aspect-square bg-bg-subtle rounded-lg overflow-hidden mb-6">
+                <img
+                  src={inst.photo}
+                  alt={`Foto de ${inst.name}`}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="text-xl font-bold text-text-primary mb-2">{inst.name}</h3>
+              <p class="text-text-muted text-sm">{inst.role}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <blockquote class="max-w-3xl mx-auto mt-16 text-center">
+        <p class="text-xl text-text-secondary italic leading-relaxed">
+          "Não somos professor de business school. Somos a galera que cuida de mais de 100 locadoras
+          no Brasil. O conteúdo aqui é o que a gente vê funcionando todo dia."
+        </p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- PRA QUEM É -->
+  <section class="section">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-10">
+          Esse curso é pra você se…
+        </h2>
+        <ul class="space-y-4">
+          {
+            audience.map((item) => (
+              <li class="flex gap-4 text-lg text-text-secondary">
+                <span class="text-brand-accent text-2xl leading-none">✓</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-12 pt-8 border-t border-border-subtle">
+          <h3 class="text-xl font-semibold text-text-primary mb-4">Não é pra você se…</h3>
+          <ul class="space-y-3">
+            <li class="flex gap-4 text-text-muted">
+              <span class="text-feedback-error">✗</span>
+              <span>Você quer fórmula mágica de enriquecer em 30 dias</span>
+            </li>
+            <li class="flex gap-4 text-text-muted">
+              <span class="text-feedback-error">✗</span>
+              <span>Você não tá disposto a sentar pra estudar 30 minutos por dia</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVA SOCIAL -->
+  <section class="section bg-bg-elevated/30">
+    <div class="container-page">
+      <div class="max-w-3xl mb-16">
+        <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
+          Não é teoria. É o que funciona dentro das locadoras que cuidamos.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          stats.map((stat) => (
+            <div class="p-8 bg-bg-elevated border border-border-subtle rounded-lg text-center">
+              <div class="display text-4xl lg:text-5xl font-extrabold text-brand-accent">
+                {stat.value}
+              </div>
+              <p class="text-sm text-text-muted mt-3 leading-tight">{stat.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section">
+    <div class="container-page">
+      <div class="max-w-3xl mx-auto text-center p-12 lg:p-16 bg-gradient-to-br from-brand-primary/20 to-brand-accent/10 border border-border-strong rounded-xl">
+        <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
+          Tá esperando o quê?
+        </h2>
+        <p class="text-lg text-text-secondary leading-relaxed mb-10">
+          O curso é grátis. Leva 2 minutos pra se cadastrar. E você sai da próxima semana sabendo
+          mais sobre o seu negócio do que sabia no ano todo.
+        </p>
+        <Button href="/cadastro" size="lg">Cadastrar agora — é grátis</Button>
+        <p class="mt-6 text-sm text-text-muted">
+          Sem cartão, sem pegadinha. Só preenche o cadastro e o acesso cai no seu e-mail.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

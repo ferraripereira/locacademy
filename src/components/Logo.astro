@@ -1,0 +1,22 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { size = 'md' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'text-xl',
+  md: 'text-2xl',
+  lg: 'text-3xl',
+};
+---
+
+<a href="/" class="flex flex-col leading-none">
+  <span class={`${sizeClasses[size]} font-bold tracking-tight text-text-primary`}>
+    LocAcademy
+  </span>
+  <span class="text-xs text-text-muted font-normal mt-0.5">
+    by ODuo
+  </span>
+</a>

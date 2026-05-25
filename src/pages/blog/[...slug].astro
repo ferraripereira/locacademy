@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/Button.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={`${post.data.title} | LocAcademy`} description={post.data.description}>
+  <article class="container-page pt-16 pb-20 lg:pt-24">
+    <div class="max-w-narrow mx-auto">
+      <a href="/blog" class="text-sm text-brand-accent hover:text-text-primary inline-flex items-center gap-2 mb-8">
+        <span>←</span> Voltar pro blog
+      </a>
+
+      <header class="mb-12">
+        <time class="text-sm text-text-muted">
+          {post.data.pubDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+        </time>
+        <h1 class="display text-4xl lg:text-5xl font-extrabold text-text-primary leading-tight tracking-tight mt-3">
+          {post.data.title}
+        </h1>
+        <p class="text-xl text-text-secondary mt-6 leading-relaxed">
+          {post.data.description}
+        </p>
+      </header>
+
+      {post.data.cover && (
+        <img
+          src={post.data.cover}
+          alt={post.data.coverAlt || ''}
+          class="w-full aspect-video object-cover rounded-lg mb-12"
+        />
+      )}
+
+      <div class="prose prose-invert prose-lg max-w-none">
+        <Content />
+      </div>
+
+      <div class="mt-16 p-8 lg:p-10 bg-gradient-to-br from-brand-primary/20 to-brand-accent/10 border border-border-strong rounded-xl text-center">
+        <h2 class="text-2xl lg:text-3xl font-bold text-text-primary mb-4">
+          Quer ir muito além desse artigo?
+        </h2>
+        <p class="text-text-secondary mb-6 max-w-2xl mx-auto">
+          O LocAcademy é um curso completo de marketing, vendas e gestão pra dono de locadora.
+          Grátis enquanto durar o MVP.
+        </p>
+        <Button href="/cadastro" size="lg">Acessar o curso grátis</Button>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Estilização básica do markdown do artigo */
+  .prose h2 {
+    @apply text-text-primary text-3xl font-bold mt-12 mb-4;
+  }
+  .prose h3 {
+    @apply text-text-primary text-2xl font-semibold mt-8 mb-3;
+  }
+  .prose p {
+    @apply text-text-secondary leading-relaxed mb-4;
+  }
+  .prose ul, .prose ol {
+    @apply text-text-secondary mb-4 ml-6;
+  }
+  .prose ul li {
+    @apply list-disc mb-2;
+  }
+  .prose ol li {
+    @apply list-decimal mb-2;
+  }
+  .prose a {
+    @apply text-brand-accent hover:underline;
+  }
+  .prose strong {
+    @apply text-text-primary;
+  }
+  .prose blockquote {
+    @apply border-l-4 border-brand-accent pl-6 italic text-text-secondary my-6;
+  }
+  .prose code {
+    @apply bg-bg-subtle px-2 py-0.5 rounded text-sm text-brand-accent;
+  }
+  .prose table {
+    @apply w-full border-collapse my-6;
+  }
+  .prose th, .prose td {
+    @apply border border-border-subtle px-4 py-2 text-left;
+  }
+  .prose th {
+    @apply bg-bg-elevated text-text-primary font-semibold;
+  }
+</style>

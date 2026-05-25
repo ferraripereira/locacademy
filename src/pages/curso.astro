@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+
+const howItWorks = [
+  {
+    step: '01',
+    title: 'Cadastra-se',
+    text: 'Preenche um formulário rápido com seus dados e da sua locadora.',
+  },
+  {
+    step: '02',
+    title: 'Recebe o acesso',
+    text: 'A gente libera o curso na sua conta em poucos minutos.',
+  },
+  {
+    step: '03',
+    title: 'Estuda no seu ritmo',
+    text: 'Vídeos curtos, vai e vem quando quiser.',
+  },
+  {
+    step: '04',
+    title: 'Aplica de verdade',
+    text: 'Cada aula termina com algo prático pra fazer na sua locadora.',
+  },
+];
+
+const modules = [
+  {
+    number: '01',
+    title: 'GESTÃO',
+    duration: '[X horas]',
+    lessons: [
+      '[Aula 1 — Lucas a detalhar]',
+      '[Aula 2 — Lucas a detalhar]',
+      '[Aula 3 — Lucas a detalhar]',
+    ],
+    outcomes: [
+      'Calcular o preço de diária de qualquer equipamento da sua frota com critério',
+      'Ler o financeiro da sua locadora sem precisar de contador pra traduzir',
+      'Saber se seu negócio tá indo bem (e não no feeling)',
+    ],
+  },
+  {
+    number: '02',
+    title: 'VENDAS',
+    duration: '[X horas]',
+    lessons: [
+      '[Aula 1 — Lucas a detalhar]',
+      '[Aula 2 — Lucas a detalhar]',
+      '[Aula 3 — Lucas a detalhar]',
+    ],
+    outcomes: [
+      'Abordar cliente novo com método, não no improviso',
+      'Estruturar proposta que fecha mais rápido',
+      'Reativar cliente inativo de forma sistemática',
+    ],
+  },
+  {
+    number: '03',
+    title: 'MARKETING',
+    duration: '[X horas]',
+    lessons: [
+      '[Aula 1 — Lucas a detalhar]',
+      '[Aula 2 — Lucas a detalhar]',
+      '[Aula 3 — Lucas a detalhar]',
+    ],
+    outcomes: [
+      'Posicionar a locadora pra ser achada no Google',
+      'Postar conteúdo que gera pedido de orçamento (não só curtida)',
+      'Investir em tráfego pago sem queimar dinheiro',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Curso LocAcademy — Marketing, Vendas e Gestão pra Locadoras | by ODuo"
+  description="3 módulos diretos ao ponto, linguagem de quem vive o dia-a-dia da locação. Acesso 100% gratuito enquanto estiver em fase de MVP."
+>
+  <!-- HERO -->
+  <section class="container-page pt-20 pb-16 lg:pt-28 lg:pb-20">
+    <div class="max-w-4xl">
+      <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary leading-tight tracking-tight">
+        Curso LocAcademy — Marketing, Vendas e Gestão pra Locadoras
+      </h1>
+      <p class="mt-6 text-lg lg:text-xl text-text-secondary leading-relaxed">
+        3 módulos. Linguagem de quem vive o dia-a-dia da locação. Sem firula.
+      </p>
+      <p class="mt-2 text-lg text-text-primary font-medium">
+        Acesso 100% gratuito enquanto estiver em fase de MVP.
+      </p>
+      <div class="mt-8">
+        <Button href="/cadastro" size="lg">Quero acessar agora</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section bg-bg-elevated/30">
+    <div class="container-page">
+      <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-12">Como funciona</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          howItWorks.map((step) => (
+            <div class="p-6 bg-bg-elevated border border-border-subtle rounded-lg">
+              <div class="display text-3xl font-extrabold text-brand-accent mb-3">{step.step}</div>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">{step.title}</h3>
+              <p class="text-text-secondary text-sm leading-relaxed">{step.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALHE DOS MÓDULOS -->
+  <section class="section">
+    <div class="container-page">
+      <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-12">O conteúdo</h2>
+      <div class="space-y-8">
+        {
+          modules.map((mod) => (
+            <div class="p-8 lg:p-10 bg-bg-elevated border border-border-subtle rounded-lg">
+              <div class="flex flex-col lg:flex-row lg:items-start gap-8">
+                <div class="lg:w-1/3">
+                  <span class="text-brand-accent text-sm font-mono">MÓDULO {mod.number}</span>
+                  <h3 class="text-3xl font-bold text-text-primary mt-2">{mod.title}</h3>
+                  <p class="text-text-muted text-sm mt-2">Duração total: {mod.duration}</p>
+                </div>
+                <div class="lg:w-2/3 space-y-6">
+                  <div>
+                    <h4 class="text-sm font-semibold text-text-primary uppercase tracking-wide mb-3">
+                      Aulas
+                    </h4>
+                    <ul class="space-y-2">
+                      {mod.lessons.map((lesson, idx) => (
+                        <li class="flex gap-3 text-text-secondary">
+                          <span class="text-brand-accent text-sm font-mono w-6">
+                            {String(idx + 1).padStart(2, '0')}
+                          </span>
+                          <span>{lesson}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-text-primary uppercase tracking-wide mb-3">
+                      O que você vai saber fazer
+                    </h4>
+                    <ul class="space-y-2">
+                      {mod.outcomes.map((outcome) => (
+                        <li class="flex gap-3 text-text-secondary">
+                          <span class="text-brand-accent">→</span>
+                          <span>{outcome}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- PRÉ-REQUISITOS -->
+  <section class="section bg-bg-elevated/30">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-6">
+          O que você precisa pra começar
+        </h2>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Nada. Sério. Você precisa ter uma locadora (ou trabalhar em uma) e vontade de aprender.
+          O curso foi pensado pra quem nunca sentou pra estudar gestão na vida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE É GRÁTIS -->
+  <section class="section">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-6">Por que tá de graça?</h2>
+        <p class="text-lg text-text-secondary leading-relaxed mb-4">
+          A ODuo trabalha com locadoras todos os dias e a gente vê o mesmo problema se repetindo:
+          falta conhecimento básico de gestão, marketing e vendas no nicho. Esse curso é nossa
+          forma de elevar a régua do mercado inteiro.
+        </p>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Vai ficar grátis durante essa primeira fase. Quando virar produto pago, quem entrou
+          agora segue com acesso.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section">
+    <div class="container-page text-center">
+      <Button href="/cadastro" size="lg">Cadastrar e acessar agora</Button>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+
+const instructors = [
+  {
+    name: 'Lucas Pereira',
+    role: 'Sócio da ODuo',
+    bio: '[X] anos atuando especificamente com marketing e posicionamento para locação de equipamentos. [Bio curta de 3-4 linhas — Lucas a escrever ou aprovar].',
+    photo: '/fotos/lucas.jpg',
+  },
+  {
+    name: 'Murilo [Sobrenome]',
+    role: '[Cargo na ODuo]',
+    bio: '[Bio curta — Lucas a fornecer.]',
+    photo: '/fotos/murilo.jpg',
+  },
+  {
+    name: 'João [Sobrenome]',
+    role: '[Cargo na ODuo]',
+    bio: '[Bio curta — Lucas a fornecer.]',
+    photo: '/fotos/joao.jpg',
+  },
+];
+---
+
+<BaseLayout
+  title="Sobre o LocAcademy — Quem está por trás da escola | by ODuo"
+  description="LocAcademy nasceu dentro da ODuo, assessoria 100% focada em locadoras de equipamentos. Conheça quem está por trás do projeto."
+>
+  <!-- HERO -->
+  <section class="container-page pt-20 pb-16 lg:pt-28 lg:pb-20">
+    <div class="max-w-4xl">
+      <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary leading-tight tracking-tight">
+        Quem tá por trás do LocAcademy
+      </h1>
+      <p class="mt-6 text-lg lg:text-xl text-text-secondary leading-relaxed">
+        LocAcademy nasceu dentro da ODuo — assessoria de marketing, vendas e tecnologia 100%
+        focada em locadoras de equipamentos.
+      </p>
+    </div>
+  </section>
+
+  <!-- A ODUO -->
+  <section class="section bg-bg-elevated/30">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-8">A ODuo</h2>
+        <div class="space-y-5 text-lg text-text-secondary leading-relaxed">
+          <p>
+            A ODuo é a casa que ajuda locadora de equipamentos a vender mais e operar melhor.
+            Marketing, tecnologia e inteligência artificial, tudo aplicado ao nicho de locação —
+            e só ao nicho de locação.
+          </p>
+          <p>
+            Hoje a gente atende mais de 100 locadoras espalhadas pelo Brasil. Da locadora pequena
+            de bairro até operações com frota de centenas de equipamentos. A gente aprendeu, na
+            prática, o que funciona e o que não funciona pra esse mercado.
+          </p>
+          <p>
+            O LocAcademy é a forma da gente compartilhar isso com quem ainda não é cliente — ou
+            com quem é cliente e quer afundar mais ainda no conhecimento.
+          </p>
+        </div>
+        <div class="mt-8">
+          <a
+            href="https://oduo.com.br"
+            class="text-brand-accent hover:text-text-primary font-medium inline-flex items-center gap-2"
+          >
+            Conhecer a ODuo
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE EXISTE -->
+  <section class="section">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-8">Por que esse curso existe</h2>
+        <div class="space-y-5 text-lg text-text-secondary leading-relaxed">
+          <p>
+            Toda vez que a gente entrava numa locadora nova como cliente, batia na mesma realidade:
+            o dono é um craque em operação e atendimento, mas nunca recebeu educação formal sobre
+            como gerir o negócio, como vender com método ou como fazer marketing.
+          </p>
+          <p>
+            Não é por falta de capacidade. É por falta de acesso. O conteúdo de gestão que existe é
+            genérico — fala de "empresa" em abstrato, não fala da realidade de quem aluga compactador
+            e betoneira.
+          </p>
+          <p>
+            A gente decidiu fazer o conteúdo que a gente queria que existisse quando começou
+            nesse mercado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUTORES -->
+  <section class="section bg-bg-elevated/30">
+    <div class="container-page">
+      <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-12">Quem vai te ensinar</h2>
+      <div class="space-y-12">
+        {
+          instructors.map((inst, idx) => (
+            <div class={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-10 items-start`}>
+              <div class="lg:w-1/3">
+                <div class="aspect-square bg-bg-subtle rounded-lg overflow-hidden">
+                  <img
+                    src={inst.photo}
+                    alt={`Foto de ${inst.name}`}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="lg:w-2/3">
+                <h3 class="text-3xl font-bold text-text-primary mb-2">{inst.name}</h3>
+                <p class="text-brand-accent font-medium mb-4">{inst.role}</p>
+                <p class="text-lg text-text-secondary leading-relaxed">{inst.bio}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container-page text-center">
+      <p class="text-xl text-text-secondary mb-8">Bora começar?</p>
+      <Button href="/cadastro" size="lg">Cadastrar e acessar o curso</Button>
+    </div>
+  </section>
+</BaseLayout>

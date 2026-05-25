@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Blog do LocAcademy — Marketing, vendas e gestão pra locadora | by ODuo"
+  description="Conteúdo prático pra dono de locadora de equipamentos crescer. Marketing, vendas e gestão sem teoria de palestra."
+>
+  <section class="container-page pt-20 pb-16 lg:pt-28">
+    <div class="max-w-3xl">
+      <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary leading-tight tracking-tight">
+        Blog
+      </h1>
+      <p class="mt-6 text-lg text-text-secondary leading-relaxed">
+        Conteúdo prático pra dono de locadora crescer. Direto ao ponto, sem encheção.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-24">
+    <div class="container-page">
+      {posts.length === 0 ? (
+        <p class="text-text-muted text-center py-16">
+          Em breve, os primeiros artigos aqui.
+        </p>
+      ) : (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <a
+              href={`/blog/${post.slug}`}
+              class="group block p-6 bg-bg-elevated border border-border-subtle rounded-lg hover:border-brand-accent/50 transition-colors"
+            >
+              <time class="text-xs text-text-muted">
+                {post.data.pubDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+              </time>
+              <h2 class="text-xl font-bold text-text-primary mt-3 mb-3 group-hover:text-brand-accent transition-colors">
+                {post.data.title}
+              </h2>
+              <p class="text-text-secondary text-sm leading-relaxed line-clamp-3">
+                {post.data.description}
+              </p>
+              <span class="inline-flex items-center gap-2 mt-4 text-brand-accent text-sm font-medium">
+                Ler artigo
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout
+  title="Pronto! Você já está dentro — LocAcademy"
+  description="Cadastro concluído. Em breve você recebe acesso ao curso no seu e-mail."
+  noindex={true}
+>
+  <section class="container-page pt-24 pb-16 lg:pt-32">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-feedback-success/20 text-feedback-success rounded-full mb-6 text-3xl">
+        ✓
+      </div>
+      <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary leading-tight tracking-tight">
+        Pronto. Você já tá dentro.
+      </h1>
+      <p class="mt-6 text-lg text-text-secondary leading-relaxed">
+        Em até 5 minutos você recebe um e-mail com seu login e senha pra acessar o curso na
+        plataforma. Confere também o spam — às vezes ele se esconde lá.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-20">
+    <div class="max-w-2xl mx-auto px-6 lg:px-8">
+      <div class="p-8 lg:p-10 bg-bg-elevated border border-border-subtle rounded-lg">
+        <h2 class="text-2xl font-bold text-text-primary mb-8">O que fazer agora</h2>
+        <ol class="space-y-6">
+          <li class="flex gap-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-brand-primary text-white rounded-full flex items-center justify-center font-bold">1</span>
+            <div>
+              <h3 class="text-lg font-semibold text-text-primary mb-1">Abra seu e-mail</h3>
+              <p class="text-text-secondary">
+                Procura por "LocAcademy" — vai chegar de <code class="text-brand-accent text-sm">no-reply@hotmart.com</code>.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-brand-primary text-white rounded-full flex items-center justify-center font-bold">2</span>
+            <div>
+              <h3 class="text-lg font-semibold text-text-primary mb-1">Crie sua senha</h3>
+              <p class="text-text-secondary">Clica no link do e-mail e define sua senha de acesso.</p>
+            </div>
+          </li>
+          <li class="flex gap-5">
+            <span class="flex-shrink-0 w-10 h-10 bg-brand-primary text-white rounded-full flex items-center justify-center font-bold">3</span>
+            <div>
+              <h3 class="text-lg font-semibold text-text-primary mb-1">Comece pelo Módulo 1 — Gestão</h3>
+              <p class="text-text-secondary">
+                A gente recomenda começar por aí, mesmo se sua dor maior for outra. A base é gestão.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-20">
+    <div class="max-w-2xl mx-auto px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">Enquanto o e-mail não chega</h2>
+      <ul class="space-y-3 text-text-secondary">
+        <li>
+          → Segue o
+          <a href="https://instagram.com/oduomarketing" class="text-brand-accent hover:underline">
+            @oduomarketing
+          </a>
+          no Instagram pra conteúdo diário
+        </li>
+        <li>
+          → Conhece o trabalho da
+          <a href="https://oduo.com.br" class="text-brand-accent hover:underline">ODuo</a>
+          com locadoras
+        </li>
+        <li>
+          → Lê os
+          <a href="/blog" class="text-brand-accent hover:underline">artigos do blog</a>
+          pra esquentar os motores
+        </li>
+      </ul>
+      <div class="mt-8">
+        <Button href="/blog" variant="outline">Ir para o blog</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-24">
+    <div class="max-w-2xl mx-auto px-6 lg:px-8 p-8 bg-bg-elevated/50 border border-border-subtle rounded-lg">
+      <h3 class="text-xl font-semibold text-text-primary mb-3">Não recebeu o e-mail?</h3>
+      <p class="text-text-secondary">
+        Manda mensagem no nosso WhatsApp: <strong class="text-text-primary">[telefone]</strong> —
+        a gente libera teu acesso no braço.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

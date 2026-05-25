@@ -1,0 +1,47 @@
+/* Fontes — General Sans (Fontshare) + Inter (Google Fonts) */
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-bg-base text-text-secondary;
+    font-family: 'General Sans', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased min-h-screen;
+  }
+
+  h1, h2, h3, h4 {
+    @apply text-text-primary;
+    font-family: 'General Sans', system-ui, sans-serif;
+  }
+
+  /* Headlines display usam Inter pra peso e contraste */
+  .display {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-accent ring-offset-2 ring-offset-bg-base;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply max-w-container mx-auto px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-20 lg:py-28;
+  }
+}
