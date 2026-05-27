@@ -5,11 +5,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 
 const checkoutBase = 'https://pay.hotmart.com/Q105995061A';
+const variant = 'A';
 ---
 
 <BaseLayout
-  title="Garantir acesso ao LocAcademy — 12x R$ 24,75 | by ODuo"
-  description="Acesso vitalício ao curso completo de marketing, vendas e gestão pra locadora. Pagamento em 12x sem juros e garantia de 7 dias."
+  title="Garantir acesso ao LocAcademy — 12x R$ 30,72 | by ODuo"
+  description="Acesso vitalício ao curso completo de marketing, vendas e gestão pra locadora. Pagamento em 12x e garantia de 7 dias."
 >
   <section class="container-page pt-20 pb-12 lg:pt-28">
     <div class="max-w-2xl mx-auto text-center">
@@ -33,10 +34,10 @@ const checkoutBase = 'https://pay.hotmart.com/Q105995061A';
         <p class="text-sm text-text-muted uppercase tracking-wide mb-2">Sua oferta</p>
         <h2 class="text-2xl font-bold text-text-primary mb-4">Curso LocAcademy completo</h2>
         <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-          <span class="display text-4xl font-extrabold text-brand-accent">12x R$ 24,75</span>
-          <span class="text-sm text-text-muted">sem juros no cartão</span>
+          <span class="display text-4xl font-extrabold text-brand-accent">12x R$ 30,72</span>
+          <span class="text-sm text-text-muted">no cartão</span>
         </div>
-        <p class="text-sm text-text-secondary">ou R$ 297 à vista (cartão, PIX ou boleto)</p>
+        <p class="text-sm text-text-secondary">ou R$ 297 à vista (PIX ou boleto)</p>
         <ul class="mt-6 space-y-2 text-sm text-text-secondary">
           <li class="flex gap-2"><span class="text-feedback-success">✓</span> 3 módulos completos (Gestão, Vendas, Marketing)</li>
           <li class="flex gap-2"><span class="text-feedback-success">✓</span> Acesso vitalício a todo conteúdo</li>
@@ -44,124 +45,155 @@ const checkoutBase = 'https://pay.hotmart.com/Q105995061A';
         </ul>
       </div>
 
-      <!-- Formulário -->
+      <!-- Formulario no padrao ODuo -->
       <form
-        id="lead-form"
-        action="/api/lead"
-        method="POST"
+        id="form-diagnostico"
+        novalidate
         class="space-y-6 p-8 lg:p-10 bg-bg-elevated border border-border-subtle rounded-lg"
       >
-        <p class="text-sm text-text-muted mb-4">
+        <p class="text-sm text-text-muted">
           Esses dados qualificam seu acesso e ajudam a ODuo a te dar suporte personalizado.
           São processados conforme nossa <a href="/politicas/privacidade" class="text-brand-accent hover:underline">Política de Privacidade</a>.
         </p>
 
-        <div>
+        <!-- 1. Nome -->
+        <div class="form-group">
           <label for="nome" class="block text-sm font-medium text-text-primary mb-2">
-            Nome completo <span class="text-feedback-error">*</span>
+            Nome <span class="text-feedback-error">*</span>
           </label>
-          <input type="text" id="nome" name="nome" required
-            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            placeholder="Seu nome" />
+          <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Seu nome completo" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent" />
+          <span data-error-for="nome" class="block text-xs text-feedback-error mt-1 hidden"></span>
         </div>
 
-        <div>
+        <!-- 2. E-mail -->
+        <div class="form-group">
           <label for="email" class="block text-sm font-medium text-text-primary mb-2">
             E-mail <span class="text-feedback-error">*</span>
           </label>
-          <input type="email" id="email" name="email" required
-            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            placeholder="seu@email.com" />
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="seu@email.com" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent" />
+          <span data-error-for="email" class="block text-xs text-feedback-error mt-1 hidden"></span>
         </div>
 
-        <div>
+        <!-- 3. Telefone -->
+        <div class="form-group">
           <label for="telefone" class="block text-sm font-medium text-text-primary mb-2">
-            Telefone (WhatsApp) <span class="text-feedback-error">*</span>
+            Telefone <span class="text-feedback-error">*</span>
           </label>
-          <input type="tel" id="telefone" name="telefone" required
-            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            placeholder="(00) 00000-0000" />
+          <input type="tel" id="telefone" name="telefone" autocomplete="tel" maxlength="15" placeholder="(00) 00000-0000" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent" />
+          <span data-error-for="telefone" class="block text-xs text-feedback-error mt-1 hidden"></span>
         </div>
 
-        <div>
-          <label for="locadora" class="block text-sm font-medium text-text-primary mb-2">
-            Nome da sua locadora <span class="text-feedback-error">*</span>
+        <!-- 4. Nome da empresa -->
+        <div class="form-group">
+          <label for="nome_da_empresa" class="block text-sm font-medium text-text-primary mb-2">
+            Nome da empresa <span class="text-feedback-error">*</span>
           </label>
-          <input type="text" id="locadora" name="locadora" required
-            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            placeholder="Nome da empresa" />
+          <input type="text" id="nome_da_empresa" name="nome_da_empresa" autocomplete="organization" placeholder="Nome da sua empresa" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent" />
+          <span data-error-for="nome_da_empresa" class="block text-xs text-feedback-error mt-1 hidden"></span>
         </div>
 
-        <div class="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label for="cidade" class="block text-sm font-medium text-text-primary mb-2">
-              Cidade <span class="text-feedback-error">*</span>
-            </label>
-            <input type="text" id="cidade" name="cidade" required
-              class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent" />
-          </div>
-          <div>
-            <label for="estado" class="block text-sm font-medium text-text-primary mb-2">
-              Estado <span class="text-feedback-error">*</span>
-            </label>
-            <select id="estado" name="estado" required
-              class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
-              <option value="">Selecione</option>
-              <option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option>
-              <option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option>
-              <option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option>
-              <option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option>
-              <option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option>
-              <option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option>
-              <option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option>
-              <option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option>
-              <option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
+        <!-- 5. Cargo -->
+        <div class="form-group">
           <label for="cargo" class="block text-sm font-medium text-text-primary mb-2">
-            Seu cargo <span class="text-feedback-error">*</span>
+            Cargo <span class="text-feedback-error">*</span>
           </label>
           <select id="cargo" name="cargo" required
             class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
-            <option value="">Selecione</option>
-            <option value="dono">Dono / Sócio</option>
-            <option value="gerente">Gerente</option>
+            <option value="" disabled selected>Selecione seu cargo</option>
+            <option value="socio_ou_fundador">Sócio ou fundador</option>
+            <option value="diretor">Diretor</option>
+            <option value="coordenador_gerente">Coordenador / gerente</option>
+            <option value="supervisor">Supervisor</option>
             <option value="outro">Outro</option>
           </select>
+          <span data-error-for="cargo" class="block text-xs text-feedback-error mt-1 hidden"></span>
         </div>
 
-        <div>
-          <label for="frota" class="block text-sm font-medium text-text-primary mb-2">
-            Quantos equipamentos sua locadora tem na frota? <span class="text-feedback-error">*</span>
+        <!-- 6. Estado -->
+        <div class="form-group">
+          <label for="estado" class="block text-sm font-medium text-text-primary mb-2">
+            Estado <span class="text-feedback-error">*</span>
           </label>
-          <select id="frota" name="frota" required
+          <select id="estado" name="estado" required
             class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
-            <option value="">Selecione</option>
-            <option value="ate-20">Até 20</option>
-            <option value="21-50">21 a 50</option>
-            <option value="51-100">51 a 100</option>
-            <option value="mais-100">Mais de 100</option>
+            <option value="" disabled selected>Selecione seu estado</option>
+            <option value="ac">Acre</option><option value="al">Alagoas</option>
+            <option value="ap">Amapá</option><option value="am">Amazonas</option>
+            <option value="ba">Bahia</option><option value="ce">Ceará</option>
+            <option value="df">Distrito Federal</option><option value="es">Espírito Santo</option>
+            <option value="go">Goiás</option><option value="ma">Maranhão</option>
+            <option value="mt">Mato Grosso</option><option value="ms">Mato Grosso do Sul</option>
+            <option value="mg">Minas Gerais</option><option value="pa">Pará</option>
+            <option value="pb">Paraíba</option><option value="pr">Paraná</option>
+            <option value="pe">Pernambuco</option><option value="pi">Piauí</option>
+            <option value="rj">Rio de Janeiro</option><option value="rn">Rio Grande do Norte</option>
+            <option value="rs">Rio Grande do Sul</option><option value="ro">Rondônia</option>
+            <option value="rr">Roraima</option><option value="sc">Santa Catarina</option>
+            <option value="sp">São Paulo</option><option value="se">Sergipe</option>
+            <option value="to">Tocantins</option>
           </select>
+          <span data-error-for="estado" class="block text-xs text-feedback-error mt-1 hidden"></span>
         </div>
 
-        <div>
-          <label for="origem" class="block text-sm font-medium text-text-primary mb-2">
-            Como você conheceu o LocAcademy? <span class="text-feedback-error">*</span>
+        <!-- 7. Cenario -->
+        <div class="form-group">
+          <label for="cenario" class="block text-sm font-medium text-text-primary mb-2">
+            Cenário atual <span class="text-feedback-error">*</span>
           </label>
-          <select id="origem" name="origem" required
+          <select id="cenario" name="cenario" required
             class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
-            <option value="">Selecione</option>
-            <option value="instagram">Instagram</option>
-            <option value="google">Google</option>
-            <option value="indicacao">Indicação</option>
-            <option value="cliente-oduo">Já sou cliente ODuo</option>
-            <option value="outro">Outro</option>
+            <option value="" disabled selected>Selecione seu cenário</option>
+            <option value="tenho_uma_locadora">Tenho uma locadora</option>
+            <option value="tenho_uma_locadora_e_outros_negocios">Tenho uma locadora e outros negócios</option>
+            <option value="tenho_outros_negocios">Tenho outros negócios</option>
+            <option value="nao_tenho_negocios">Não tenho negócios</option>
           </select>
+          <span data-error-for="cenario" class="block text-xs text-feedback-error mt-1 hidden"></span>
         </div>
 
+        <!-- 8. Segmento -->
+        <div class="form-group">
+          <label for="segmento_de_locacao" class="block text-sm font-medium text-text-primary mb-2">
+            Segmento de locação <span class="text-feedback-error">*</span>
+          </label>
+          <select id="segmento_de_locacao" name="segmento_de_locacao" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
+            <option value="" disabled selected>Selecione o segmento</option>
+            <option value="construcao_civil">Construção civil</option>
+            <option value="veiculos">Veículos</option>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="outros">Outros</option>
+          </select>
+          <span data-error-for="segmento_de_locacao" class="block text-xs text-feedback-error mt-1 hidden"></span>
+        </div>
+
+        <!-- 9. Faturamento mensal -->
+        <div class="form-group">
+          <label for="faturamento_mensal" class="block text-sm font-medium text-text-primary mb-2">
+            Faturamento mensal <span class="text-feedback-error">*</span>
+          </label>
+          <select id="faturamento_mensal" name="faturamento_mensal" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
+            <option value="" disabled selected>Selecione seu faturamento</option>
+            <option value="ainda_nao_tenho_faturamento">Ainda não tenho faturamento</option>
+            <option value="ate_5k">Até R$ 5.000</option>
+            <option value="de_5k_a_15k">R$ 5.000 a R$ 15.000</option>
+            <option value="de_15k_a_40k">R$ 15.000 a R$ 40.000</option>
+            <option value="de_40k_a_60k">R$ 40.000 a R$ 60.000</option>
+            <option value="de_60k_a_100k">R$ 60.000 a R$ 100.000</option>
+            <option value="de_100k_a_300k">R$ 100.000 a R$ 300.000</option>
+            <option value="de_300k_a_500k">R$ 300.000 a R$ 500.000</option>
+            <option value="de_500k_a_1m">R$ 500.000 a R$ 1.000.000</option>
+            <option value="acima_de_1m">Acima de R$ 1.000.000</option>
+          </select>
+          <span data-error-for="faturamento_mensal" class="block text-xs text-feedback-error mt-1 hidden"></span>
+        </div>
+
+        <!-- LGPD -->
         <div class="flex items-start gap-3 pt-2">
           <input type="checkbox" id="aceito" name="aceito" required
             class="mt-1 w-4 h-4 rounded border-border-subtle text-brand-primary focus:ring-brand-accent" />
@@ -172,9 +204,10 @@ const checkoutBase = 'https://pay.hotmart.com/Q105995061A';
         </div>
 
         <div class="pt-4">
-          <Button type="submit" size="lg" fullWidth>
-            Ir para o checkout seguro →
-          </Button>
+          <button type="submit" id="form-submit"
+            class="w-full inline-flex items-center justify-center font-medium rounded-md transition-all duration-200 bg-brand-primary text-white hover:bg-brand-hover px-8 py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed">
+            <span class="btn__text">Ir para o checkout seguro →</span>
+          </button>
           <p class="mt-4 text-xs text-text-muted text-center">
             Próximo passo: checkout Hotmart · Pagamento seguro · Garantia de 7 dias
           </p>
@@ -183,37 +216,184 @@ const checkoutBase = 'https://pay.hotmart.com/Q105995061A';
     </div>
   </section>
 
-  {/* Fallback caso JS esteja off: form submete via POST tradicional pra /api/lead que faz redirect */}
-  <script is:inline define:vars={{ checkoutBase }}>
-    document.getElementById('lead-form')?.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const form = event.currentTarget;
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerText;
-      submitBtn.disabled = true;
-      submitBtn.innerText = 'Processando…';
+  <style is:global>
+    .is-invalid { border-color: #EF4444 !important; }
+    [data-error-for] { display: none; }
+    [data-error-for].is-visible { display: block; }
+  </style>
 
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
+  <script is:inline define:vars={{ checkoutBase, variant }}>
+    (function () {
+      'use strict';
 
-      try {
-        const response = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+      // ====== UTMs + click IDs (padrao ODuo) ======
+      const TRACKING_KEYS = [
+        'utm_source','utm_medium','utm_campaign','utm_term','utm_content',
+        'utm_id','utm_name','utm_creative','utm_placement',
+        'gclid','gbraid','wbraid','fbclid','ttclid','msclkid','li_fat_id'
+      ];
+
+      function captureTracking() {
+        const fromUrl = {};
+        try {
+          const params = new URLSearchParams(window.location.search);
+          TRACKING_KEYS.forEach((k) => { const v = params.get(k); if (v) fromUrl[k] = v; });
+        } catch (e) {}
+        if (Object.keys(fromUrl).length > 0) {
+          try { sessionStorage.setItem('lead_tracking', JSON.stringify(fromUrl)); } catch (e) {}
+          return fromUrl;
+        }
+        try {
+          const stored = sessionStorage.getItem('lead_tracking');
+          if (stored) return JSON.parse(stored);
+        } catch (e) {}
+        return {};
+      }
+      const capturedTracking = captureTracking();
+      function getTrackingPayload() {
+        const out = {};
+        TRACKING_KEYS.forEach((k) => { out[k] = capturedTracking[k] || ''; });
+        return out;
+      }
+
+      // ====== Mascara telefone (00) 00000-0000 ======
+      function initPhoneMask() {
+        const input = document.getElementById('telefone');
+        if (!input) return;
+        const applyMask = (value) => {
+          value = value.replace(/\D/g, '').slice(0, 11);
+          if (value.length === 0) return '';
+          if (value.length <= 2) return '(' + value;
+          if (value.length <= 6) return '(' + value.slice(0,2) + ') ' + value.slice(2);
+          if (value.length <= 10) return '(' + value.slice(0,2) + ') ' + value.slice(2,6) + '-' + value.slice(6);
+          return '(' + value.slice(0,2) + ') ' + value.slice(2,7) + '-' + value.slice(7);
+        };
+        input.addEventListener('input', (e) => { e.target.value = applyMask(e.target.value); });
+        input.addEventListener('paste', (e) => {
+          if (!e.clipboardData) return;
+          e.preventDefault();
+          input.value = applyMask(e.clipboardData.getData('text'));
+        });
+      }
+
+      // ====== Validacao + envio ======
+      function initForm() {
+        const form = document.getElementById('form-diagnostico');
+        const submitBtn = document.getElementById('form-submit');
+        if (!form || !submitBtn) return;
+
+        const validators = {
+          nome:                (v) => v.trim().length >= 3 || 'Informe seu nome completo',
+          email:               (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || 'E-mail inválido',
+          telefone:            (v) => v.replace(/\D/g, '').length >= 10 || 'Telefone inválido',
+          nome_da_empresa:     (v) => v.trim().length >= 2 || 'Informe o nome da empresa',
+          cargo:               (v) => v.trim() !== '' || 'Selecione seu cargo',
+          estado:              (v) => v.trim() !== '' || 'Selecione seu estado',
+          cenario:             (v) => v.trim() !== '' || 'Selecione seu cenário',
+          segmento_de_locacao: (v) => v.trim() !== '' || 'Selecione o segmento',
+          faturamento_mensal:  (v) => v.trim() !== '' || 'Selecione seu faturamento',
+        };
+
+        const showFieldError = (name, msg) => {
+          const field = document.getElementById(name);
+          const errEl = document.querySelector('[data-error-for="' + name + '"]');
+          if (field) field.classList.add('is-invalid');
+          if (errEl) { errEl.textContent = msg; errEl.classList.add('is-visible'); }
+        };
+        const clearFieldError = (name) => {
+          const field = document.getElementById(name);
+          const errEl = document.querySelector('[data-error-for="' + name + '"]');
+          if (field) field.classList.remove('is-invalid');
+          if (errEl) { errEl.textContent = ''; errEl.classList.remove('is-visible'); }
+        };
+
+        form.querySelectorAll('input, select').forEach((input) => {
+          const clear = () => clearFieldError(input.id);
+          input.addEventListener('input', clear);
+          input.addEventListener('change', clear);
+          input.addEventListener('blur', () => {
+            if (validators[input.id]) {
+              const r = validators[input.id](input.value);
+              if (r !== true && input.value.trim() !== '') showFieldError(input.id, r);
+            }
+          });
         });
 
-        if (!response.ok) throw new Error('Falha ao processar');
-        const data = await response.json();
+        const validateForm = () => {
+          let ok = true;
+          Object.keys(validators).forEach((name) => {
+            const field = document.getElementById(name);
+            if (!field) return;
+            const r = validators[name](field.value);
+            if (r !== true) { showFieldError(name, r); ok = false; }
+            else clearFieldError(name);
+          });
+          // LGPD
+          const aceito = document.getElementById('aceito');
+          if (aceito && !aceito.checked) ok = false;
+          return ok;
+        };
 
-        // Redireciona para checkout Hotmart com tracking
-        const checkoutUrl = data.checkoutUrl || `${checkoutBase}?email=${encodeURIComponent(payload.email)}&name=${encodeURIComponent(payload.nome)}`;
-        window.location.href = checkoutUrl;
-      } catch (err) {
-        // Fallback: vai direto pro checkout mesmo se a gravacao no Sheets falhar
-        const checkoutUrl = `${checkoutBase}?email=${encodeURIComponent(payload.email)}&name=${encodeURIComponent(payload.nome)}`;
-        window.location.href = checkoutUrl;
+        const setLoading = (loading) => {
+          const btnText = submitBtn.querySelector('.btn__text');
+          if (loading) {
+            submitBtn.disabled = true;
+            if (btnText) { submitBtn.dataset.originalText = btnText.textContent; btnText.textContent = 'PROCESSANDO...'; }
+          } else {
+            submitBtn.disabled = false;
+            if (btnText && submitBtn.dataset.originalText) btnText.textContent = submitBtn.dataset.originalText;
+          }
+        };
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (!validateForm()) {
+            const firstInvalid = form.querySelector('.is-invalid');
+            if (firstInvalid) firstInvalid.focus();
+            return;
+          }
+
+          const payload = {
+            nome:                document.getElementById('nome').value.trim(),
+            email:               document.getElementById('email').value.trim(),
+            telefone:            document.getElementById('telefone').value.trim(),
+            nome_da_empresa:     document.getElementById('nome_da_empresa').value.trim(),
+            cargo:               document.getElementById('cargo').value,
+            estado:              document.getElementById('estado').value,
+            cenario:             document.getElementById('cenario').value,
+            segmento_de_locacao: document.getElementById('segmento_de_locacao').value,
+            faturamento_mensal:  document.getElementById('faturamento_mensal').value,
+            variant,
+            ...getTrackingPayload(),
+            page_url: window.location.href,
+            page_path: window.location.pathname,
+            referrer: document.referrer || '',
+            user_agent: navigator.userAgent,
+            submitted_at: new Date().toISOString(),
+          };
+
+          setLoading(true);
+          try {
+            const res = await fetch('/api/lead', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            if (!res.ok) throw new Error('Request failed: ' + res.status);
+            const data = await res.json();
+            const checkoutUrl = data.checkoutUrl || (checkoutBase + '?email=' + encodeURIComponent(payload.email) + '&name=' + encodeURIComponent(payload.nome));
+            window.location.href = checkoutUrl;
+          } catch (err) {
+            console.error('Erro ao enviar lead:', err);
+            // Fallback: vai pro checkout direto se nossa API falhar (nao bloqueia compra)
+            window.location.href = checkoutBase + '?email=' + encodeURIComponent(payload.email) + '&name=' + encodeURIComponent(payload.nome);
+          }
+        });
       }
-    });
+
+      const init = () => { initPhoneMask(); initForm(); };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+      else init();
+    })();
   </script>
 </BaseLayout>

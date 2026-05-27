@@ -6,17 +6,15 @@ export const prerender = false;
 const CHECKOUT_BASE = 'https://pay.hotmart.com/Q105995061A';
 
 /**
- * MVP mode: nao gravamos em Sheets/CRM externos.
- * Os leads sao apenas logados no painel Vercel (Logs do projeto).
- * Lucas consulta diariamente em vercel.com -> projeto -> Logs e copia
- * para a planilha de leads conforme necessario.
+ * MVP mode: leads vao apenas para o painel Vercel (Logs do projeto).
+ * Lucas consulta em vercel.com -> projeto -> Logs filtrando por [LEAD]
+ * e copia para a planilha conforme necessario.
  *
- * Quando a validacao do MVP fechar, plugar Sheets/Make/Zapier definindo
- * SHEETS_WEBHOOK_URL no env do Vercel - o codigo abaixo ja considera isso.
+ * Formulario segue o padrao ODuo (mesmo schema usado nos outros forms da empresa).
  */
 async function gravarSheetsOpcional(payload: Record<string, unknown>) {
   const webhookUrl = import.meta.env.SHEETS_WEBHOOK_URL;
-  if (!webhookUrl) return; // MVP: sem integracao
+  if (!webhookUrl) return;
   try {
     await fetch(webhookUrl, {
       method: 'POST',
@@ -33,10 +31,22 @@ function montarCheckoutUrl(payload: Record<string, string>): string {
   if (payload.email) url.searchParams.set('email', payload.email);
   if (payload.nome) url.searchParams.set('name', payload.nome);
   if (payload.telefone) url.searchParams.set('phone', payload.telefone.replace(/\D/g, ''));
-  // sck = tracking source da Hotmart, util pra correlacionar quem comprou com qual lead
   url.searchParams.set('sck', `loc-${Date.now()}-${(payload.email || '').split('@')[0]}`);
   return url.toString();
 }
+
+// Campos obrigatorios do padrao ODuo
+const CAMPOS_OBRIGATORIOS = [
+  'nome',
+  'email',
+  'telefone',
+  'nome_da_empresa',
+  'cargo',
+  'estado',
+  'cenario',
+  'segmento_de_locacao',
+  'faturamento_mensal',
+];
 
 export const POST: APIRoute = async ({ request }) => {
   let payload: Record<string, string> = {};
@@ -56,9 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  // Validacao minima dos campos obrigatorios
-  const required = ['nome', 'email', 'telefone', 'locadora', 'cidade', 'estado', 'cargo', 'frota'];
-  const missing = required.filter((field) => !payload[field]?.trim());
+  const missing = CAMPOS_OBRIGATORIOS.filter((field) => !(payload[field] || '').trim());
   if (missing.length) {
     return new Response(
       JSON.stringify({ error: 'Campos obrigatorios ausentes', missing }),
@@ -72,18 +80,30 @@ export const POST: APIRoute = async ({ request }) => {
   // Filtre por "[LEAD]" em vercel.com -> projeto -> Logs.
   console.log('[LEAD]', JSON.stringify({
     timestamp,
+    // Campos do padrao ODuo
     nome: payload.nome,
     email: payload.email,
     telefone: payload.telefone,
-    locadora: payload.locadora,
-    cidade: payload.cidade,
-    estado: payload.estado,
+    nome_da_empresa: payload.nome_da_empresa,
     cargo: payload.cargo,
-    frota: payload.frota,
-    origem: payload.origem,
+    estado: payload.estado,
+    cenario: payload.cenario,
+    segmento_de_locacao: payload.segmento_de_locacao,
+    faturamento_mensal: payload.faturamento_mensal,
+    // Tracking
+    variant: payload.variant || '',
+    utm_source: payload.utm_source || '',
+    utm_medium: payload.utm_medium || '',
+    utm_campaign: payload.utm_campaign || '',
+    utm_term: payload.utm_term || '',
+    utm_content: payload.utm_content || '',
+    gclid: payload.gclid || '',
+    fbclid: payload.fbclid || '',
+    referrer: payload.referrer || '',
+    page_url: payload.page_url || '',
   }));
 
-  // Best-effort: grava em Sheets se configurado (opcional, hoje desligado)
+  // Best-effort: grava em Sheets se configurado (hoje desligado)
   await gravarSheetsOpcional({ ...payload, timestamp, status: 'lead_capturado' });
 
   const checkoutUrl = montarCheckoutUrl(payload);
