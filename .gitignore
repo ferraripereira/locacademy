@@ -26,6 +26,9 @@ pnpm-debug.log*
 # astro
 .astro/
 
+# vercel build output (gerado pelo adapter, nao deve ir pro git)
+.vercel/
+
 # secrets / credenciais — NUNCA commitar
 *.pem
 *.key

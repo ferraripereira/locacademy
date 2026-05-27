@@ -1,89 +1,95 @@
 ---
+export const prerender = true;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 
-// IMPORTANTE: substituir HOTMART_WEBHOOK_URL pelo webhook real da integração com Hotmart
-// (ou trocar action= para uma URL do Zapier / Make / Formspree na Sprint 3)
-const formAction = '/api/cadastro';
+const checkoutBase = 'https://pay.hotmart.com/Q105995061A';
 ---
 
 <BaseLayout
-  title="Cadastrar no LocAcademy — Acesso liberado em 2 minutos | by ODuo"
-  description="Preencha o cadastro e receba acesso ao curso LocAcademy no seu e-mail. É grátis, sem cartão, sem pegadinha."
+  title="Garantir acesso ao LocAcademy — 12x R$ 24,75 | by ODuo"
+  description="Acesso vitalício ao curso completo de marketing, vendas e gestão pra locadora. Pagamento em 12x sem juros e garantia de 7 dias."
 >
-  <section class="container-page pt-20 pb-16 lg:pt-28">
-    <div class="max-w-2xl mx-auto">
+  <section class="container-page pt-20 pb-12 lg:pt-28">
+    <div class="max-w-2xl mx-auto text-center">
+      <span class="inline-flex items-center gap-2 px-3 py-1 bg-feedback-success/15 text-feedback-success text-xs font-medium rounded-full mb-6">
+        ✓ Acesso vitalício · Garantia 7 dias
+      </span>
       <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary leading-tight tracking-tight">
-        Acesso liberado em 2 minutos.
+        Você tá a 2 minutos de entrar.
       </h1>
       <p class="mt-6 text-lg text-text-secondary leading-relaxed">
-        Preenche os dados abaixo e a gente libera seu acesso ao curso no seu e-mail. É grátis,
-        sem cartão, sem pegadinha.
+        Preenche os dados rapidinho e a gente te leva pro checkout seguro da Hotmart pra
+        finalizar a compra. Acesso liberado na hora.
       </p>
     </div>
   </section>
 
   <section class="pb-24">
     <div class="max-w-2xl mx-auto px-6 lg:px-8">
+      <!-- Card de oferta -->
+      <div class="mb-8 p-6 lg:p-8 bg-gradient-to-br from-brand-primary/20 to-brand-accent/10 border border-border-strong rounded-xl">
+        <p class="text-sm text-text-muted uppercase tracking-wide mb-2">Sua oferta</p>
+        <h2 class="text-2xl font-bold text-text-primary mb-4">Curso LocAcademy completo</h2>
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+          <span class="display text-4xl font-extrabold text-brand-accent">12x R$ 24,75</span>
+          <span class="text-sm text-text-muted">sem juros no cartão</span>
+        </div>
+        <p class="text-sm text-text-secondary">ou R$ 297 à vista (cartão, PIX ou boleto)</p>
+        <ul class="mt-6 space-y-2 text-sm text-text-secondary">
+          <li class="flex gap-2"><span class="text-feedback-success">✓</span> 3 módulos completos (Gestão, Vendas, Marketing)</li>
+          <li class="flex gap-2"><span class="text-feedback-success">✓</span> Acesso vitalício a todo conteúdo</li>
+          <li class="flex gap-2"><span class="text-feedback-success">✓</span> Garantia incondicional de 7 dias</li>
+        </ul>
+      </div>
+
+      <!-- Formulário -->
       <form
-        action={formAction}
+        id="lead-form"
+        action="/api/lead"
         method="POST"
         class="space-y-6 p-8 lg:p-10 bg-bg-elevated border border-border-subtle rounded-lg"
       >
+        <p class="text-sm text-text-muted mb-4">
+          Esses dados qualificam seu acesso e ajudam a ODuo a te dar suporte personalizado.
+          São processados conforme nossa <a href="/politicas/privacidade" class="text-brand-accent hover:underline">Política de Privacidade</a>.
+        </p>
+
         <div>
           <label for="nome" class="block text-sm font-medium text-text-primary mb-2">
             Nome completo <span class="text-feedback-error">*</span>
           </label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            required
+          <input type="text" id="nome" name="nome" required
             class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            placeholder="Seu nome"
-          />
+            placeholder="Seu nome" />
         </div>
 
         <div>
           <label for="email" class="block text-sm font-medium text-text-primary mb-2">
             E-mail <span class="text-feedback-error">*</span>
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
+          <input type="email" id="email" name="email" required
             class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            placeholder="seu@email.com"
-          />
+            placeholder="seu@email.com" />
         </div>
 
         <div>
           <label for="telefone" class="block text-sm font-medium text-text-primary mb-2">
             Telefone (WhatsApp) <span class="text-feedback-error">*</span>
           </label>
-          <input
-            type="tel"
-            id="telefone"
-            name="telefone"
-            required
+          <input type="tel" id="telefone" name="telefone" required
             class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            placeholder="(00) 00000-0000"
-          />
+            placeholder="(00) 00000-0000" />
         </div>
 
         <div>
           <label for="locadora" class="block text-sm font-medium text-text-primary mb-2">
             Nome da sua locadora <span class="text-feedback-error">*</span>
           </label>
-          <input
-            type="text"
-            id="locadora"
-            name="locadora"
-            required
+          <input type="text" id="locadora" name="locadora" required
             class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            placeholder="Nome da empresa"
-          />
+            placeholder="Nome da empresa" />
         </div>
 
         <div class="grid sm:grid-cols-2 gap-4">
@@ -91,24 +97,15 @@ const formAction = '/api/cadastro';
             <label for="cidade" class="block text-sm font-medium text-text-primary mb-2">
               Cidade <span class="text-feedback-error">*</span>
             </label>
-            <input
-              type="text"
-              id="cidade"
-              name="cidade"
-              required
-              class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary placeholder:text-text-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            />
+            <input type="text" id="cidade" name="cidade" required
+              class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent" />
           </div>
           <div>
             <label for="estado" class="block text-sm font-medium text-text-primary mb-2">
               Estado <span class="text-feedback-error">*</span>
             </label>
-            <select
-              id="estado"
-              name="estado"
-              required
-              class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-            >
+            <select id="estado" name="estado" required
+              class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
               <option value="">Selecione</option>
               <option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option>
               <option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option>
@@ -127,12 +124,8 @@ const formAction = '/api/cadastro';
           <label for="cargo" class="block text-sm font-medium text-text-primary mb-2">
             Seu cargo <span class="text-feedback-error">*</span>
           </label>
-          <select
-            id="cargo"
-            name="cargo"
-            required
-            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-          >
+          <select id="cargo" name="cargo" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
             <option value="">Selecione</option>
             <option value="dono">Dono / Sócio</option>
             <option value="gerente">Gerente</option>
@@ -144,12 +137,8 @@ const formAction = '/api/cadastro';
           <label for="frota" class="block text-sm font-medium text-text-primary mb-2">
             Quantos equipamentos sua locadora tem na frota? <span class="text-feedback-error">*</span>
           </label>
-          <select
-            id="frota"
-            name="frota"
-            required
-            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-          >
+          <select id="frota" name="frota" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
             <option value="">Selecione</option>
             <option value="ate-20">Até 20</option>
             <option value="21-50">21 a 50</option>
@@ -162,12 +151,8 @@ const formAction = '/api/cadastro';
           <label for="origem" class="block text-sm font-medium text-text-primary mb-2">
             Como você conheceu o LocAcademy? <span class="text-feedback-error">*</span>
           </label>
-          <select
-            id="origem"
-            name="origem"
-            required
-            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-          >
+          <select id="origem" name="origem" required
+            class="w-full px-4 py-3 bg-bg-subtle border border-border-subtle rounded-md text-text-primary focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
             <option value="">Selecione</option>
             <option value="instagram">Instagram</option>
             <option value="google">Google</option>
@@ -178,24 +163,57 @@ const formAction = '/api/cadastro';
         </div>
 
         <div class="flex items-start gap-3 pt-2">
-          <input
-            type="checkbox"
-            id="aceito"
-            name="aceito"
-            required
-            class="mt-1 w-4 h-4 rounded border-border-subtle text-brand-primary focus:ring-brand-accent"
-          />
+          <input type="checkbox" id="aceito" name="aceito" required
+            class="mt-1 w-4 h-4 rounded border-border-subtle text-brand-primary focus:ring-brand-accent" />
           <label for="aceito" class="text-sm text-text-secondary leading-relaxed">
-            Aceito receber comunicações do LocAcademy e da ODuo. Seus dados são tratados conforme
-            nossa <a href="/politicas/privacidade" class="text-brand-accent hover:underline">Política de Privacidade</a>.
-            Não enviamos spam.
+            Concordo com os <a href="/politicas/termos" class="text-brand-accent hover:underline">Termos de Uso</a> e
+            <a href="/politicas/privacidade" class="text-brand-accent hover:underline">Política de Privacidade</a>.
           </label>
         </div>
 
         <div class="pt-4">
-          <Button type="submit" size="lg" fullWidth>Liberar meu acesso</Button>
+          <Button type="submit" size="lg" fullWidth>
+            Ir para o checkout seguro →
+          </Button>
+          <p class="mt-4 text-xs text-text-muted text-center">
+            Próximo passo: checkout Hotmart · Pagamento seguro · Garantia de 7 dias
+          </p>
         </div>
       </form>
     </div>
   </section>
+
+  {/* Fallback caso JS esteja off: form submete via POST tradicional pra /api/lead que faz redirect */}
+  <script is:inline define:vars={{ checkoutBase }}>
+    document.getElementById('lead-form')?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerText;
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Processando…';
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) throw new Error('Falha ao processar');
+        const data = await response.json();
+
+        // Redireciona para checkout Hotmart com tracking
+        const checkoutUrl = data.checkoutUrl || `${checkoutBase}?email=${encodeURIComponent(payload.email)}&name=${encodeURIComponent(payload.nome)}`;
+        window.location.href = checkoutUrl;
+      } catch (err) {
+        // Fallback: vai direto pro checkout mesmo se a gravacao no Sheets falhar
+        const checkoutUrl = `${checkoutBase}?email=${encodeURIComponent(payload.email)}&name=${encodeURIComponent(payload.nome)}`;
+        window.location.href = checkoutUrl;
+      }
+    });
+  </script>
 </BaseLayout>
