@@ -31,46 +31,52 @@ const modules = [
   {
     number: '01',
     title: 'GESTÃO',
-    duration: '[X horas]',
+    instructor: 'Com Murilo',
     lessons: [
-      '[Aula 1 — Lucas a detalhar]',
-      '[Aula 2 — Lucas a detalhar]',
-      '[Aula 3 — Lucas a detalhar]',
+      'Pesquisa de Mercado',
+      'Alinhamento de Sócios',
+      'Conceito de Estratégia',
+      'Conselheiros Estratégicos',
+      'Plano Estratégico',
+      'Organograma',
+      'Marketing Estratégico',
     ],
     outcomes: [
-      'Calcular o preço de diária de qualquer equipamento da sua frota com critério',
-      'Ler o financeiro da sua locadora sem precisar de contador pra traduzir',
-      'Saber se seu negócio tá indo bem (e não no feeling)',
+      'Sair do operacional e enxergar a locadora como um negócio',
+      'Definir uma estratégia clara que guia decisão do dia-a-dia',
+      'Estruturar a empresa pra escalar sem depender só de você',
     ],
   },
   {
     number: '02',
     title: 'VENDAS',
-    duration: '[X horas]',
+    instructor: 'Com João',
     lessons: [
-      '[Aula 1 — Lucas a detalhar]',
-      '[Aula 2 — Lucas a detalhar]',
-      '[Aula 3 — Lucas a detalhar]',
+      'Mentalidade de Vendas',
+      'Ativos para Locação',
+      'Organização Comercial',
     ],
     outcomes: [
-      'Abordar cliente novo com método, não no improviso',
-      'Estruturar proposta que fecha mais rápido',
-      'Reativar cliente inativo de forma sistemática',
+      'Tirar o time comercial do reativo e colocar em ofensivo',
+      'Saber quais são os ativos de venda que toda locadora precisa ter',
+      'Organizar o processo comercial pra parar de depender do "feeling"',
     ],
   },
   {
     number: '03',
-    title: 'MARKETING',
-    duration: '[X horas]',
+    title: 'MARKETING DIGITAL',
+    instructor: 'Com Lucas',
     lessons: [
-      '[Aula 1 — Lucas a detalhar]',
-      '[Aula 2 — Lucas a detalhar]',
-      '[Aula 3 — Lucas a detalhar]',
+      'Funil Digital',
+      'Lógica de Compra',
+      'Google Ads na Prática',
+      'Otimização do Google Ads',
+      'Life Time Value',
     ],
     outcomes: [
-      'Posicionar a locadora pra ser achada no Google',
-      'Postar conteúdo que gera pedido de orçamento (não só curtida)',
-      'Investir em tráfego pago sem queimar dinheiro',
+      'Entender o funil digital aplicado ao nicho de locação',
+      'Rodar Google Ads sem queimar dinheiro (e medir o que volta)',
+      'Calcular LTV pra saber quanto pode investir pra adquirir cliente',
     ],
   },
 ];
@@ -132,7 +138,7 @@ const modules = [
                 <div class="lg:w-1/3">
                   <span class="text-brand-accent text-sm font-mono">MÓDULO {mod.number}</span>
                   <h3 class="text-3xl font-bold text-text-primary mt-2">{mod.title}</h3>
-                  <p class="text-text-muted text-sm mt-2">Duração total: {mod.duration}</p>
+                  <p class="text-text-muted text-sm mt-2">{mod.instructor}</p>
                 </div>
                 <div class="lg:w-2/3 space-y-6">
                   <div>
