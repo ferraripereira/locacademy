@@ -5,39 +5,35 @@ export const prerender = false;
 
 const CHECKOUT_BASE = 'https://pay.hotmart.com/Q105995061A';
 
-// Envia lead para Google Sheets via Apps Script Web App.
-// SHEETS_WEBHOOK_URL precisa estar definido em env vars (Vercel + .env.local).
-async function gravarSheets(payload: Record<string, string>) {
+/**
+ * MVP mode: nao gravamos em Sheets/CRM externos.
+ * Os leads sao apenas logados no painel Vercel (Logs do projeto).
+ * Lucas consulta diariamente em vercel.com -> projeto -> Logs e copia
+ * para a planilha de leads conforme necessario.
+ *
+ * Quando a validacao do MVP fechar, plugar Sheets/Make/Zapier definindo
+ * SHEETS_WEBHOOK_URL no env do Vercel - o codigo abaixo ja considera isso.
+ */
+async function gravarSheetsOpcional(payload: Record<string, unknown>) {
   const webhookUrl = import.meta.env.SHEETS_WEBHOOK_URL;
-  if (!webhookUrl) {
-    console.warn('[lead] SHEETS_WEBHOOK_URL nao configurado - lead nao foi salvo');
-    return { ok: false, reason: 'no-webhook-configured' };
-  }
-
+  if (!webhookUrl) return; // MVP: sem integracao
   try {
-    const response = await fetch(webhookUrl, {
+    await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...payload,
-        timestamp: new Date().toISOString(),
-        status: 'lead_capturado',
-      }),
+      body: JSON.stringify(payload),
     });
-    return { ok: response.ok, status: response.status };
   } catch (err) {
-    console.error('[lead] erro ao gravar Sheets:', err);
-    return { ok: false, reason: 'fetch-error' };
+    console.error('[LEAD] falha ao gravar Sheets externo:', err);
   }
 }
 
 function montarCheckoutUrl(payload: Record<string, string>): string {
-  // Hotmart aceita query params para pre-preencher nome e email no checkout
   const url = new URL(CHECKOUT_BASE);
   if (payload.email) url.searchParams.set('email', payload.email);
   if (payload.nome) url.searchParams.set('name', payload.nome);
   if (payload.telefone) url.searchParams.set('phone', payload.telefone.replace(/\D/g, ''));
-  // sck = source tracking; usamos para correlacionar webhook depois
+  // sck = tracking source da Hotmart, util pra correlacionar quem comprou com qual lead
   url.searchParams.set('sck', `loc-${Date.now()}-${(payload.email || '').split('@')[0]}`);
   return url.toString();
 }
@@ -53,7 +49,7 @@ export const POST: APIRoute = async ({ request }) => {
       const formData = await request.formData();
       payload = Object.fromEntries(formData.entries()) as Record<string, string>;
     }
-  } catch (err) {
+  } catch {
     return new Response(
       JSON.stringify({ error: 'Payload invalido' }),
       { status: 400, headers: { 'Content-Type': 'application/json' } },
@@ -70,13 +66,28 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  // Grava no Sheets (best effort - se falhar, segue o jogo e manda o lead pro checkout)
-  await gravarSheets(payload);
+  const timestamp = new Date().toISOString();
+
+  // Log estruturado para consulta no painel Vercel.
+  // Filtre por "[LEAD]" em vercel.com -> projeto -> Logs.
+  console.log('[LEAD]', JSON.stringify({
+    timestamp,
+    nome: payload.nome,
+    email: payload.email,
+    telefone: payload.telefone,
+    locadora: payload.locadora,
+    cidade: payload.cidade,
+    estado: payload.estado,
+    cargo: payload.cargo,
+    frota: payload.frota,
+    origem: payload.origem,
+  }));
+
+  // Best-effort: grava em Sheets se configurado (opcional, hoje desligado)
+  await gravarSheetsOpcional({ ...payload, timestamp, status: 'lead_capturado' });
 
   const checkoutUrl = montarCheckoutUrl(payload);
 
-  // Se for fetch (JSON), retorna URL pra o client redirecionar.
-  // Se for POST form tradicional, faz redirect direto.
   const acceptsJson = request.headers.get('accept')?.includes('application/json');
   if (acceptsJson) {
     return new Response(
@@ -91,5 +102,4 @@ export const POST: APIRoute = async ({ request }) => {
   });
 };
 
-// Bloqueia metodos diferentes de POST
 export const GET: APIRoute = () => new Response('Method not allowed', { status: 405 });

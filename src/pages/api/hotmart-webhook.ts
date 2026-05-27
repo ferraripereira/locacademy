@@ -1,16 +1,8 @@
 import type { APIRoute } from 'astro';
 
-// Endpoint server-side, recebe webhooks da Hotmart
 export const prerender = false;
 
-// Eventos que indicam compra confirmada/concluida na Hotmart
-const PAID_EVENTS = new Set([
-  'PURCHASE_COMPLETE',
-  'PURCHASE_APPROVED',
-  'PURCHASE_BILLET_PRINTED', // boleto impresso (pre-pagamento)
-]);
-
-// Eventos de reembolso / chargeback / cancelamento
+const PAID_EVENTS = new Set(['PURCHASE_COMPLETE', 'PURCHASE_APPROVED']);
 const REFUND_EVENTS = new Set([
   'PURCHASE_REFUNDED',
   'PURCHASE_CHARGEBACK',
@@ -18,33 +10,26 @@ const REFUND_EVENTS = new Set([
   'PURCHASE_EXPIRED',
 ]);
 
-async function atualizarSheets(payload: Record<string, unknown>) {
+async function gravarSheetsOpcional(payload: Record<string, unknown>) {
   const webhookUrl = import.meta.env.SHEETS_WEBHOOK_URL;
-  if (!webhookUrl) {
-    console.warn('[hotmart-webhook] SHEETS_WEBHOOK_URL nao configurado');
-    return { ok: false };
-  }
-
+  if (!webhookUrl) return;
   try {
-    const response = await fetch(webhookUrl, {
+    await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
-    return { ok: response.ok, status: response.status };
   } catch (err) {
-    console.error('[hotmart-webhook] erro ao atualizar Sheets:', err);
-    return { ok: false };
+    console.error('[HOTMART] falha ao atualizar Sheets:', err);
   }
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  // Verifica HOTTOK no header (token compartilhado da Hotmart pra autenticar webhook)
-  // Lucas vai configurar o mesmo token no painel Hotmart e em HOTMART_HOTTOK env var
+  // Valida HOTTOK se configurado (token compartilhado da Hotmart)
   const expectedToken = import.meta.env.HOTMART_HOTTOK;
   const receivedToken = request.headers.get('x-hotmart-hottok');
   if (expectedToken && receivedToken !== expectedToken) {
-    console.warn('[hotmart-webhook] hottok invalido');
+    console.warn('[HOTMART] hottok invalido');
     return new Response('Unauthorized', { status: 401 });
   }
 
@@ -60,30 +45,39 @@ export const POST: APIRoute = async ({ request }) => {
   const buyer = data?.buyer || {};
   const purchase = data?.purchase || {};
 
-  // Logging basico para Vercel logs
-  console.log(`[hotmart-webhook] evento=${event} email=${buyer.email} status=${purchase.status}`);
-
   if (!event) {
     return new Response('Missing event', { status: 400 });
   }
 
-  const sheetsPayload = {
+  const status = PAID_EVENTS.has(event)
+    ? 'PAGO'
+    : REFUND_EVENTS.has(event)
+      ? 'REEMBOLSADO_OU_CANCELADO'
+      : `OUTRO:${event}`;
+
+  // Log estruturado para consulta no painel Vercel.
+  // Filtre por "[PURCHASE]" em vercel.com -> projeto -> Logs.
+  console.log('[PURCHASE]', JSON.stringify({
+    timestamp: new Date().toISOString(),
     event,
+    status,
     email: buyer.email || '',
     nome: buyer.name || '',
     telefone: buyer.checkout_phone || '',
     transaction_id: purchase.transaction || '',
     valor: purchase.price?.value || 0,
     sck: data?.subscription?.subscriber?.code || purchase?.tracking?.source || '',
-    timestamp: new Date().toISOString(),
-    status: PAID_EVENTS.has(event)
-      ? 'pago'
-      : REFUND_EVENTS.has(event)
-        ? 'reembolsado_ou_cancelado'
-        : `outro:${event}`,
-  };
+  }));
 
-  await atualizarSheets(sheetsPayload);
+  await gravarSheetsOpcional({
+    event,
+    status,
+    email: buyer.email,
+    nome: buyer.name,
+    transaction_id: purchase.transaction,
+    valor: purchase.price?.value,
+    timestamp: new Date().toISOString(),
+  });
 
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
