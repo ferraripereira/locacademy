@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bgMurilo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E40AF"/>
+      <stop offset="100%" stop-color="#0F1424"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgMurilo)"/>
+  <circle cx="200" cy="200" r="140" fill="none" stroke="#3B82F6" stroke-width="2" opacity="0.4"/>
+  <circle cx="200" cy="200" r="110" fill="none" stroke="#3B82F6" stroke-width="2" opacity="0.6"/>
+  <text x="200" y="248" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="180" fill="#FFFFFF" text-anchor="middle">M</text>
+</svg>
