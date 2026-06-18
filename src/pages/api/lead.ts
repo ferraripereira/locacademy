@@ -3,7 +3,9 @@ import type { APIRoute } from 'astro';
 // Endpoint server-side (nao prerender)
 export const prerender = false;
 
-const CHECKOUT_BASE = 'https://pay.hotmart.com/Q105995061A';
+// Como o curso esta gratuito durante o MVP, redirecionamos direto para a area de membros
+// (Hotmart Club da ODuo) ao inves do checkout de pagamento.
+const CHECKOUT_BASE = 'https://hotmart.com/pt-br/club/oduo-assessoria';
 
 /**
  * MVP mode: leads vao apenas para o painel Vercel (Logs do projeto).
@@ -26,13 +28,10 @@ async function gravarSheetsOpcional(payload: Record<string, unknown>) {
   }
 }
 
-function montarCheckoutUrl(payload: Record<string, string>): string {
-  const url = new URL(CHECKOUT_BASE);
-  if (payload.email) url.searchParams.set('email', payload.email);
-  if (payload.nome) url.searchParams.set('name', payload.nome);
-  if (payload.telefone) url.searchParams.set('phone', payload.telefone.replace(/\D/g, ''));
-  url.searchParams.set('sck', `loc-${Date.now()}-${(payload.email || '').split('@')[0]}`);
-  return url.toString();
+function montarCheckoutUrl(_payload: Record<string, string>): string {
+  // Area de membros da Hotmart nao aceita query params de pre-preenchimento
+  // (diferente do checkout). So redireciona pra URL final.
+  return CHECKOUT_BASE;
 }
 
 // Campos obrigatorios do padrao ODuo

@@ -4,7 +4,7 @@ export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 
-const checkoutBase = 'https://pay.hotmart.com/Q105995061A';
+const checkoutBase = 'https://hotmart.com/pt-br/club/oduo-assessoria';
 const variant = 'A';
 ---
 
@@ -212,7 +212,7 @@ const variant = 'A';
             <span class="btn__text">Liberar meu acesso gratuito →</span>
           </button>
           <p class="mt-4 text-xs text-text-muted text-center">
-            Próximo passo: Hotmart libera seu acesso · Sem cartão · Sem pegadinha
+            Próximo passo: você vai direto pra área do curso na Hotmart · Sem cartão · Sem pegadinha
           </p>
         </div>
       </form>
@@ -377,20 +377,16 @@ const variant = 'A';
 
           setLoading(true);
           try {
-            const res = await fetch('/api/lead', {
+            await fetch('/api/lead', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify(payload),
             });
-            if (!res.ok) throw new Error('Request failed: ' + res.status);
-            const data = await res.json();
-            const checkoutUrl = data.checkoutUrl || (checkoutBase + '?email=' + encodeURIComponent(payload.email) + '&name=' + encodeURIComponent(payload.nome));
-            window.location.href = checkoutUrl;
           } catch (err) {
             console.error('Erro ao enviar lead:', err);
-            // Fallback: vai pro checkout direto se nossa API falhar (nao bloqueia compra)
-            window.location.href = checkoutBase + '?email=' + encodeURIComponent(payload.email) + '&name=' + encodeURIComponent(payload.nome);
           }
+          // Vai sempre pra /obrigado, mesmo se a API falhar (lead nao perdido se for re-tentado)
+          window.location.href = '/obrigado';
         });
       }
 

@@ -3,47 +3,62 @@ export const prerender = true;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
+
+const clubUrl = 'https://hotmart.com/pt-br/club/oduo-assessoria';
 ---
 
 <BaseLayout
   title="Acesso liberado — LocAcademy"
-  description="Seu acesso ao LocAcademy foi liberado. Em poucos minutos você recebe o login no e-mail."
+  description="Seu cadastro foi recebido. Acesse o curso agora."
   noindex={true}
 >
-  <section class="container-page pt-24 pb-16 lg:pt-32">
+  <section class="container-page pt-24 pb-12 lg:pt-32">
     <div class="max-w-2xl mx-auto text-center">
       <div class="inline-flex items-center justify-center w-16 h-16 bg-feedback-success/20 text-feedback-success rounded-full mb-6 text-3xl">
         ✓
       </div>
       <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary leading-tight tracking-tight">
-        Tudo certo. Você tá dentro.
+        Cadastro recebido. Bora pro curso?
       </h1>
       <p class="mt-6 text-lg text-text-secondary leading-relaxed">
-        A Hotmart vai enviar pra você um e-mail com login e senha de acesso ao curso em
-        até 5 minutos. Confere também o spam — às vezes ele se esconde lá.
+        Seu acesso está liberado na área de membros da Hotmart. Clica no botão abaixo
+        pra começar agora.
       </p>
+      <div class="mt-10">
+        <Button href={clubUrl} size="lg">Acessar o curso →</Button>
+        <p class="mt-4 text-sm text-text-muted">
+          Vai abrir o Hotmart Club da ODuo
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="pb-20">
     <div class="max-w-2xl mx-auto px-6 lg:px-8">
       <div class="p-8 lg:p-10 bg-bg-elevated border border-border-subtle rounded-lg">
-        <h2 class="text-2xl font-bold text-text-primary mb-8">O que fazer agora</h2>
+        <h2 class="text-2xl font-bold text-text-primary mb-2">Como funciona o acesso</h2>
+        <p class="text-text-muted mb-8">A Hotmart é a plataforma que hospeda o curso. Fica tudo lá.</p>
         <ol class="space-y-6">
           <li class="flex gap-5">
             <span class="flex-shrink-0 w-10 h-10 bg-brand-primary text-white rounded-full flex items-center justify-center font-bold">1</span>
             <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-1">Abra seu e-mail</h3>
+              <h3 class="text-lg font-semibold text-text-primary mb-1">Já tem conta na Hotmart?</h3>
               <p class="text-text-secondary">
-                Procura por "Hotmart" — vai chegar de <code class="text-brand-accent text-sm">no-reply@hotmart.com</code>.
+                Clica em "Acessar o curso" acima → faz login com seu e-mail e senha → o LocAcademy
+                aparece na sua biblioteca.
               </p>
             </div>
           </li>
           <li class="flex gap-5">
             <span class="flex-shrink-0 w-10 h-10 bg-brand-primary text-white rounded-full flex items-center justify-center font-bold">2</span>
             <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-1">Crie sua senha</h3>
-              <p class="text-text-secondary">Clica no link do e-mail e define sua senha de acesso.</p>
+              <h3 class="text-lg font-semibold text-text-primary mb-1">Ainda não tem conta?</h3>
+              <p class="text-text-secondary mb-3">
+                É grátis e leva 1 minuto. Na tela de login do Hotmart, clica em
+                <strong class="text-text-primary">"Criar conta"</strong>, usa o
+                <strong class="text-text-primary">mesmo e-mail</strong> que você cadastrou aqui.
+                Pronto — o curso vai aparecer na sua biblioteca automaticamente.
+              </p>
             </div>
           </li>
           <li class="flex gap-5">
@@ -62,7 +77,7 @@ import Button from '../components/Button.astro';
 
   <section class="pb-20">
     <div class="max-w-2xl mx-auto px-6 lg:px-8">
-      <h2 class="text-2xl font-bold text-text-primary mb-6">Enquanto o e-mail não chega</h2>
+      <h2 class="text-2xl font-bold text-text-primary mb-6">Enquanto explora o curso</h2>
       <ul class="space-y-3 text-text-secondary">
         <li>
           → Segue o
@@ -78,22 +93,19 @@ import Button from '../components/Button.astro';
           → Lê os <a href="/blog" class="text-brand-accent hover:underline">artigos do blog</a> pra esquentar os motores
         </li>
       </ul>
-      <div class="mt-8">
-        <Button href="/blog" variant="outline">Ir para o blog</Button>
-      </div>
     </div>
   </section>
 
   <section class="pb-24">
     <div class="max-w-2xl mx-auto px-6 lg:px-8 p-8 bg-bg-elevated/50 border border-border-subtle rounded-lg">
-      <h3 class="text-xl font-semibold text-text-primary mb-3">Não recebeu o e-mail em 30 minutos?</h3>
-      <p class="text-text-secondary mb-4">
-        Pode ser falha no spam ou problema temporário no e-mail. Resolve assim:
+      <h3 class="text-xl font-semibold text-text-primary mb-3">Problema pra acessar?</h3>
+      <p class="text-text-secondary mb-3">
+        Se o LocAcademy não aparecer na sua biblioteca depois de logar:
       </p>
-      <ol class="text-text-secondary space-y-2 list-decimal list-inside ml-2">
-        <li>Verifica caixa de spam, promoções e lixeira</li>
-        <li>Se não achou, acessa <a href="https://hotmart.com" class="text-brand-accent hover:underline">hotmart.com</a> e faz login com seu e-mail (sistema de recuperação)</li>
-        <li>Se ainda não funcionar, fale com a gente pela <a href="https://oduo.com.br" class="text-brand-accent hover:underline">oduo.com.br</a> que a gente libera teu acesso no braço</li>
+      <ol class="text-text-secondary space-y-2 list-decimal list-inside ml-2 mb-4">
+        <li>Confere se usou o mesmo e-mail do cadastro deste site</li>
+        <li>Aguarde alguns minutos e atualize a página da biblioteca Hotmart</li>
+        <li>Se ainda não aparecer, fale com a gente pela <a href="https://oduo.com.br" class="text-brand-accent hover:underline">oduo.com.br</a> que liberamos no braço</li>
       </ol>
     </div>
   </section>
