@@ -4,6 +4,32 @@ export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 
+const testimonials = [
+  {
+    quote: 'Investimos na ODuo e o resultado foi impressionante: mais de R$ 210.000,00 em locações fechadas. Além do retorno financeiro, tivemos clareza no processo, agilidade nas entregas e um atendimento que realmente entende do nosso mercado.',
+    name: 'Cristiano',
+    company: 'CLM Locações',
+    role: 'Proprietário',
+  },
+  {
+    quote: 'A ODuo abriu nossos olhos para nos posicionarmos digitalmente. Junto com eles, conseguimos números positivos em nossas campanhas em 2024 e em 2025 esperamos fortalecer ainda mais os nossos resultados. A equipe é muito dedicada e encara o desafio com muito entusiasmo.',
+    name: 'Equipe',
+    company: 'Centro Aço',
+    role: '',
+  },
+  {
+    quote: 'São pessoas novas, mas que trazem muita experiência, que trazem muito conhecimento. Então a gente tá nessa caminhada junto, torcendo e esperando que a gente conquiste coisas grandes no futuro juntos.',
+    name: 'Equipe',
+    company: 'RTE Andaimes',
+    role: '',
+  },
+];
+
+const clientLogos = [
+  'RTE Andaimes', 'Aliança Betoneiras', 'CLM Locações', 'Centro Aço',
+  'FEL', 'Techlift', 'K-Rental', 'Adap', 'Assis Rental', 'Mestre da Obra',
+];
+
 const instructors = [
   {
     name: 'Murilo',
@@ -115,7 +141,7 @@ const instructors = [
                   <img
                     src={inst.photo}
                     alt={`Foto de ${inst.name}`}
-                    class="w-full h-full object-cover"
+                    class="w-full h-full object-cover object-top"
                     loading="lazy"
                   />
                 </div>
@@ -132,11 +158,69 @@ const instructors = [
     </div>
   </section>
 
+  <!-- DEPOIMENTOS DE CLIENTES ODUO -->
+  <section class="section bg-bg-elevated/30">
+    <div class="container-page">
+      <div class="max-w-3xl mb-12">
+        <span class="inline-block text-brand-accent text-sm font-mono mb-3">O QUE OS CLIENTES DIZEM</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-6">
+          Não somos nós dizendo que funciona. São eles.
+        </h2>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          O LocAcademy condensa o método que a ODuo aplica nesses clientes todo dia.
+          Esses depoimentos são da operação ODuo — quem entra no LocAcademy aprende exatamente
+          o que está sendo entregue pra eles.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {testimonials.map((t) => (
+          <figure class="p-8 bg-bg-elevated border border-border-subtle rounded-lg flex flex-col">
+            <div class="text-brand-accent text-4xl font-serif leading-none mb-4">"</div>
+            <blockquote class="text-text-secondary leading-relaxed mb-6 flex-grow">
+              {t.quote}
+            </blockquote>
+            <figcaption class="pt-4 border-t border-border-subtle">
+              <p class="text-text-primary font-semibold">{t.name}</p>
+              <p class="text-sm text-text-muted">
+                {t.role && <span>{t.role} · </span>}
+                <span class="text-brand-accent">{t.company}</span>
+              </p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS DE CLIENTES -->
+  <section class="section">
+    <div class="container-page">
+      <div class="max-w-3xl mb-10">
+        <h3 class="text-2xl lg:text-3xl font-bold text-text-primary mb-4">
+          Algumas locadoras que a ODuo atende
+        </h3>
+        <p class="text-text-secondary">
+          De norte a sul do Brasil, são +500 locadoras na carteira. Aqui algumas delas:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        {clientLogos.map((name) => (
+          <div class="flex items-center justify-center px-4 py-6 bg-bg-elevated border border-border-subtle rounded-lg text-center">
+            <span class="text-text-muted text-sm font-medium">{name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="section">
     <div class="container-page text-center">
-      <p class="text-xl text-text-secondary mb-8">Bora começar?</p>
-      <Button href="/cadastro" size="lg">Cadastrar e acessar o curso</Button>
+      <p class="text-xl text-text-secondary mb-2">Bora começar?</p>
+      <p class="text-text-muted mb-8">Acesso gratuito por tempo limitado</p>
+      <Button href="/cadastro" size="lg">Garantir meu acesso gratuito</Button>
     </div>
   </section>
 </BaseLayout>

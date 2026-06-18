@@ -91,7 +91,7 @@ const stats = [
 // Modelo atual: curso vale R$ 1.997, mas esta GRATUITO durante o MVP (3 modulos).
 // Quem entra agora perde acesso quando virar pago.
 const valorReal = 'R$ 1.997';
-const heroImage = 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80&auto=format&fit=crop';
+const heroImage = '/fotos/time.jpg';
 const problemImage = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop';
 
 const courseJsonLd = {
@@ -150,8 +150,8 @@ const courseJsonLd = {
       <div class="relative">
         <img
           src={heroImage}
-          alt="Equipamento de locação em canteiro de obra"
-          class="w-full aspect-[4/5] object-cover rounded-xl border border-border-subtle"
+          alt="Murilo, João e Lucas Pereira — sócios fundadores da ODuo"
+          class="w-full aspect-[4/5] object-cover object-top rounded-xl border border-border-subtle"
           loading="eager"
         />
         <div class="absolute -bottom-6 -left-6 p-6 bg-bg-elevated border border-border-strong rounded-lg shadow-2xl max-w-[260px]">
@@ -264,7 +264,7 @@ const courseJsonLd = {
                 <img
                   src={inst.photo}
                   alt={`Foto de ${inst.name}`}
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
               </div>
