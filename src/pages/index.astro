@@ -147,17 +147,17 @@ const courseJsonLd = {
         </p>
       </div>
 
-      <div class="relative">
+      <div class="relative pb-12">
         <div class="rounded-xl border border-border-subtle overflow-hidden bg-bg-subtle">
           <img
             src={heroImage}
             alt="Murilo, João e Lucas Pereira — sócios fundadores da ODuo"
-            class="w-full h-auto object-contain"
+            class="w-full aspect-[3/2] object-cover object-[center_30%] scale-110 origin-center"
             loading="eager"
           />
         </div>
-        <div class="absolute -bottom-6 -left-6 p-6 bg-bg-elevated border border-border-strong rounded-lg shadow-2xl max-w-[260px]">
-          <div class="flex items-baseline gap-2 mb-2">
+        <div class="absolute bottom-0 left-4 right-4 sm:left-auto sm:right-auto sm:-bottom-2 sm:-left-4 p-5 bg-bg-elevated border border-border-strong rounded-lg shadow-2xl sm:max-w-[260px]">
+          <div class="flex items-baseline gap-2 mb-1">
             <span class="display text-3xl font-extrabold text-brand-accent">3</span>
             <span class="text-text-secondary text-sm">módulos completos</span>
           </div>
@@ -288,8 +288,8 @@ const courseJsonLd = {
 
   <!-- PRA QUEM É -->
   <section class="section">
-    <div class="container-page">
-      <div class="max-w-3xl">
+    <div class="container-page grid lg:grid-cols-[1fr_400px] gap-12 items-start">
+      <div>
         <span class="inline-block text-brand-accent text-sm font-mono mb-3">PRA QUEM É</span>
         <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-10">
           O LocAcademy é seu se você se enxerga em alguma dessas:
@@ -322,6 +322,18 @@ const courseJsonLd = {
             </li>
           </ul>
         </div>
+      </div>
+
+      <div class="hidden lg:block sticky top-24">
+        <div class="rounded-xl border border-border-subtle overflow-hidden bg-bg-subtle">
+          <img
+            src="/fotos/bastidor-3.jpg"
+            alt="Equipe ODuo em ação"
+            class="w-full aspect-[4/5] object-cover object-top"
+            loading="lazy"
+          />
+        </div>
+        <p class="text-center text-xs text-text-muted mt-3">Bastidores da ODuo</p>
       </div>
     </div>
   </section>
