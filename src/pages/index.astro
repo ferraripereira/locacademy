@@ -88,9 +88,9 @@ const stats = [
   { value: '+19k', label: 'leads gerados' },
 ];
 
-// Preco do curso
-const precoTotal = 'R$ 297';
-const precoParcelado = '12x de R$ 30,72';
+// Modelo atual: curso vale R$ 1.997, mas esta GRATUITO durante o MVP (3 modulos).
+// Quem entra agora perde acesso quando virar pago.
+const valorReal = 'R$ 1.997';
 const heroImage = 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80&auto=format&fit=crop';
 const problemImage = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop';
 
@@ -99,7 +99,7 @@ const courseJsonLd = {
   '@type': 'Course',
   name: 'LocAcademy — Marketing, Vendas e Gestão pra Locadoras',
   description:
-    'Curso gratuito para donos de locadora de equipamentos. 3 módulos: Gestão, Vendas e Marketing aplicados ao nicho de locação.',
+    'Curso para donos de locadora de equipamentos. 3 módulos: Gestão, Vendas e Marketing aplicados ao nicho de locação. Acesso gratuito por tempo limitado durante a fase de validação.',
   provider: {
     '@type': 'EducationalOrganization',
     name: 'LocAcademy by ODuo',
@@ -116,7 +116,6 @@ const courseJsonLd = {
   hasCourseInstance: {
     '@type': 'CourseInstance',
     courseMode: 'online',
-    courseWorkload: 'PT5H',
   },
 };
 ---
@@ -128,8 +127,8 @@ const courseJsonLd = {
   <section class="relative overflow-hidden">
     <div class="container-page pt-24 pb-20 lg:pt-32 lg:pb-28 grid lg:grid-cols-2 gap-12 items-center">
       <div>
-        <span class="inline-flex items-center gap-2 px-3 py-1 bg-brand-primary/15 text-brand-accent text-xs font-medium rounded-full mb-6">
-          ● 1ª escola digital 100% focada em locação
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-feedback-success/15 text-feedback-success text-xs font-medium rounded-full mb-6">
+          ● Acesso gratuito por tempo limitado
         </span>
         <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary leading-[1.05] tracking-tight">
           A educação que sua locadora precisa pra parar de ser tocada no improviso.
@@ -139,11 +138,11 @@ const courseJsonLd = {
           de equipamentos. Marketing, vendas e gestão sem teoria de palestra.
         </p>
         <div class="mt-10 flex flex-wrap gap-4">
-          <Button href="/cadastro" size="lg">Quero entrar — {precoParcelado}</Button>
+          <Button href="/cadastro" size="lg">Acessar gratuitamente</Button>
           <Button href="/curso" variant="outline" size="lg">Ver o que tem dentro</Button>
         </div>
         <p class="mt-6 text-sm text-text-muted">
-          {precoTotal} à vista (PIX/boleto) ou {precoParcelado} no cartão · Acesso imediato após pagamento
+          Valor de {valorReal} · <strong class="text-text-primary">gratuito enquanto durar essa fase</strong> · Acesso imediato após cadastro
         </p>
       </div>
 
@@ -237,9 +236,9 @@ const courseJsonLd = {
       </div>
 
       <div class="mt-12 text-center">
-        <Button href="/cadastro" size="lg">Garantir acesso — {precoParcelado}</Button>
+        <Button href="/cadastro" size="lg">Garantir meu acesso gratuito</Button>
         <p class="mt-4 text-sm text-text-muted">
-          {precoTotal} à vista (PIX/boleto) ou {precoParcelado} no cartão
+          Valor de {valorReal} — liberado de graça enquanto durar a fase de validação
         </p>
       </div>
     </div>
@@ -346,18 +345,19 @@ const courseJsonLd = {
     <div class="container-page">
       <div class="max-w-3xl mx-auto text-center p-12 lg:p-16 bg-gradient-to-br from-brand-primary/20 to-brand-accent/10 border border-border-strong rounded-xl">
         <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
-          Por menos de uma diária de equipamento.
+          Aproveita — não vai ser de graça pra sempre.
         </h2>
         <p class="text-lg text-text-secondary leading-relaxed mb-2">
-          {precoTotal} à vista (PIX/boleto) ou <strong class="text-text-primary">{precoParcelado} no cartão</strong>.
+          O curso completo vai custar <strong class="text-text-primary">{valorReal}</strong>.
+          Hoje, está liberado de graça pra quem entrar agora.
         </p>
         <p class="text-base text-text-secondary leading-relaxed mb-10">
-          Você sai da próxima semana sabendo mais sobre o seu negócio do que sabia no ano todo.
-          Acesso vitalício. Garantia de 7 dias.
+          Em algumas semanas a gente fecha o acesso e começa a cobrar. Quem entrou na fase gratuita
+          aproveita enquanto está aberto.
         </p>
-        <Button href="/cadastro" size="lg">Comprar agora — {precoParcelado}</Button>
+        <Button href="/cadastro" size="lg">Garantir meu acesso gratuito</Button>
         <p class="mt-6 text-sm text-text-muted">
-          Pagamento seguro via Hotmart · Cartão, PIX ou boleto · Garantia de 7 dias
+          Acesso liberado direto pela Hotmart · Sem cartão de crédito · Sem pegadinha
         </p>
       </div>
     </div>
