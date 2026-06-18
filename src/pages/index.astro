@@ -148,12 +148,14 @@ const courseJsonLd = {
       </div>
 
       <div class="relative">
-        <img
-          src={heroImage}
-          alt="Murilo, João e Lucas Pereira — sócios fundadores da ODuo"
-          class="w-full aspect-[4/5] object-cover object-top rounded-xl border border-border-subtle"
-          loading="eager"
-        />
+        <div class="rounded-xl border border-border-subtle overflow-hidden bg-bg-subtle">
+          <img
+            src={heroImage}
+            alt="Murilo, João e Lucas Pereira — sócios fundadores da ODuo"
+            class="w-full h-auto object-contain"
+            loading="eager"
+          />
+        </div>
         <div class="absolute -bottom-6 -left-6 p-6 bg-bg-elevated border border-border-strong rounded-lg shadow-2xl max-w-[260px]">
           <div class="flex items-baseline gap-2 mb-2">
             <span class="display text-3xl font-extrabold text-brand-accent">3</span>

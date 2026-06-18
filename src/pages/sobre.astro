@@ -26,8 +26,16 @@ const testimonials = [
 ];
 
 const clientLogos = [
-  'RTE Andaimes', 'Aliança Betoneiras', 'CLM Locações', 'Centro Aço',
-  'FEL', 'Techlift', 'K-Rental', 'Adap', 'Assis Rental', 'Mestre da Obra',
+  { name: 'RTE Andaimes', src: '/clientes/logo-rte-andaimes.png' },
+  { name: 'Aliança Betoneiras', src: '/clientes/logo-alianca-betoneiras.webp' },
+  { name: 'CLM Locações', src: '/clientes/logo-clm.png' },
+  { name: 'Centro Aço', src: '/clientes/logo_centro-aco.png' },
+  { name: 'FEL', src: '/clientes/logo-fel.png' },
+  { name: 'Techlift', src: '/clientes/logo-techlift.png' },
+  { name: 'K-Rental', src: '/clientes/logo-k-rental.png' },
+  { name: 'Adap', src: '/clientes/logo-adap.png' },
+  { name: 'Assis Rental', src: '/clientes/logo-assis-rental.png' },
+  { name: 'Mestre da Obra', src: '/clientes/logo-mestre-da-obra.png' },
 ];
 
 const instructors = [
@@ -72,25 +80,38 @@ const instructors = [
   <!-- A ODUO -->
   <section class="section bg-bg-elevated/30">
     <div class="container-page">
-      <div class="max-w-3xl">
-        <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-8">A ODuo</h2>
-        <div class="space-y-5 text-lg text-text-secondary leading-relaxed">
-          <p>
-            A ODuo é a casa que ajuda locadora de equipamentos a vender mais e operar melhor.
-            Marketing, tecnologia e inteligência artificial, tudo aplicado ao nicho de locação —
-            e só ao nicho de locação.
-          </p>
-          <p>
-            Hoje a gente atende mais de 100 locadoras espalhadas pelo Brasil. Da locadora pequena
-            de bairro até operações com frota de centenas de equipamentos. A gente aprendeu, na
-            prática, o que funciona e o que não funciona pra esse mercado.
-          </p>
-          <p>
-            O LocAcademy é a forma da gente compartilhar isso com quem ainda não é cliente — ou
-            com quem é cliente e quer afundar mais ainda no conhecimento.
-          </p>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-text-primary mb-8">A ODuo</h2>
+          <div class="space-y-5 text-lg text-text-secondary leading-relaxed">
+            <p>
+              A ODuo é a casa que ajuda locadora de equipamentos a vender mais e operar melhor.
+              Marketing, tecnologia e inteligência artificial, tudo aplicado ao nicho de locação —
+              e só ao nicho de locação.
+            </p>
+            <p>
+              Hoje a gente atende mais de <strong class="text-text-primary">500 locadoras</strong>
+              espalhadas pelo Brasil. Da locadora pequena de bairro até operações com frota de
+              centenas de equipamentos. A gente aprendeu, na prática, o que funciona e o que não
+              funciona pra esse mercado.
+            </p>
+            <p>
+              O LocAcademy é a forma da gente compartilhar isso com quem ainda não é cliente — ou
+              com quem é cliente e quer afundar mais ainda no conhecimento.
+            </p>
+          </div>
         </div>
-        <div class="mt-8">
+        <div class="rounded-xl border border-border-subtle overflow-hidden bg-bg-subtle">
+          <img
+            src="/fotos/lucas-murilo.jpg"
+            alt="Lucas Pereira e Murilo — co-fundadores da ODuo"
+            class="w-full h-auto object-contain"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <div class="mt-12 max-w-3xl">
+        <div>
           <a
             href="https://oduo.com.br"
             class="text-brand-accent hover:text-text-primary font-medium inline-flex items-center gap-2"
@@ -206,9 +227,14 @@ const instructors = [
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-        {clientLogos.map((name) => (
-          <div class="flex items-center justify-center px-4 py-6 bg-bg-elevated border border-border-subtle rounded-lg text-center">
-            <span class="text-text-muted text-sm font-medium">{name}</span>
+        {clientLogos.map((logo) => (
+          <div class="flex items-center justify-center px-6 py-8 bg-bg-elevated border border-border-subtle rounded-lg">
+            <img
+              src={logo.src}
+              alt={`Logo ${logo.name}`}
+              class="max-h-12 w-auto opacity-70 hover:opacity-100 transition-opacity"
+              loading="lazy"
+            />
           </div>
         ))}
       </div>
