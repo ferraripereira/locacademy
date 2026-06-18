@@ -8,31 +8,31 @@ const modules = [
   {
     number: '01',
     title: 'GESTÃO',
-    tagline: 'Como tocar a operação sem trabalhar no escuro.',
+    tagline: 'Pare de tocar sua locadora no escuro.',
     bullets: [
-      'Precificação de equipamentos sem chutômetro',
-      'Controle financeiro básico que toda locadora precisa ter',
-      'Indicadores que mostram se o negócio tá indo ou parado',
+      'Pesquisa de mercado, alinhamento de sócios e plano estratégico',
+      'Organograma e papéis claros (sem você fazendo tudo)',
+      'Conselheiros estratégicos: quem te puxa pra cima',
     ],
   },
   {
     number: '02',
     title: 'VENDAS',
-    tagline: 'Processo comercial que funciona pra locação.',
+    tagline: 'Sai do reativo. Entra no ofensivo.',
     bullets: [
-      'Como abordar cliente novo sem soar desesperado',
-      'Estruturar proposta que fecha mais rápido',
-      'Reativar cliente inativo (o ouro escondido da sua locadora)',
+      'Mentalidade de vendas que toda locadora competitiva tem',
+      'Os ativos comerciais que sua locadora precisa ter (e quase nenhuma tem)',
+      'Como organizar o time pra parar de depender do "feeling"',
     ],
   },
   {
     number: '03',
-    title: 'MARKETING',
-    tagline: 'Como ser achado pelo cliente certo, na hora certa.',
+    title: 'MARKETING DIGITAL',
+    tagline: 'Vire a locadora que o cliente acha primeiro.',
     bullets: [
-      'Posicionamento digital pra locadora ser encontrada no Google',
-      'Redes sociais que geram pedido de orçamento (não só curtida)',
-      'Tráfego pago aplicado ao nicho de locação',
+      'O funil digital aplicado ao nicho de locação (não é genérico)',
+      'Google Ads na prática + otimização (sem queimar dinheiro)',
+      'LTV: quanto você pode investir pra capturar cada cliente',
     ],
   },
 ];
@@ -41,44 +41,44 @@ const instructors = [
   {
     name: 'Murilo',
     role: 'CEO e co-fundador da ODuo · Módulo de Gestão',
-    photo: '/fotos/murilo.svg',
+    photo: '/fotos/murilo.jpg',
   },
   {
     name: 'João',
     role: 'Sócio da ODuo · Módulo de Vendas',
-    photo: '/fotos/joao.svg',
+    photo: '/fotos/joao.jpg',
   },
   {
     name: 'Lucas Pereira',
     role: 'Co-fundador da ODuo · Módulo de Marketing',
-    photo: '/fotos/lucas.svg',
+    photo: '/fotos/lucas.jpg',
   },
 ];
 
 const problems = [
   {
     icon: '💸',
-    title: 'Preço no chute',
-    text: 'Você sabe quanto custa de verdade locar cada equipamento da sua frota? A maioria não sabe.',
+    title: 'Você trabalha muito e não escala',
+    text: 'A locadora cresce, o trabalho aumenta, mas a margem fica igual. Você sente que se parar uma semana, tudo desmorona.',
   },
   {
     icon: '📵',
-    title: 'Marketing zero',
-    text: 'Quantos clientes novos chegaram este mês porque te acharam no Google? Pois é.',
+    title: 'Concorrente bobo te ganha cliente',
+    text: 'Aquele cara que mal sabe atender, mas tem o Google bem feito, leva orçamento que era seu. E você fica olhando.',
   },
   {
     icon: '⏳',
-    title: 'Venda reativa',
-    text: 'Você corre atrás do cliente ou espera ele ligar? Locadora que espera, perde.',
+    title: 'Vende quem chega — e só',
+    text: 'Sua locadora vive de quem manda mensagem espontânea. Quando essa torneira fecha, o mês fica vermelho. Sem saída.',
   },
 ];
 
 const audience = [
-  'Você é dono ou sócio de uma locadora de equipamentos',
-  'Você é gestor responsável pelo crescimento da locadora',
-  'Você sente que tá empacado e não sabe exatamente onde mexer',
-  'Você nunca recebeu treinamento formal de marketing, vendas ou gestão',
-  'Você quer parar de competir só por preço',
+  'Você é dono, sócio ou braço-direito de uma locadora de equipamentos',
+  'Sua locadora fatura — mas você sente que poderia faturar muito mais',
+  'Você nunca recebeu treinamento formal de gestão, vendas ou marketing',
+  'Você está cansado de competir só por preço (e ver margem evaporar)',
+  'Você quer parar de "tocar a empresa" e começar a "liderar o negócio"',
 ];
 
 const stats = [
@@ -128,21 +128,22 @@ const courseJsonLd = {
     <div class="container-page pt-24 pb-20 lg:pt-32 lg:pb-28 grid lg:grid-cols-2 gap-12 items-center">
       <div>
         <span class="inline-flex items-center gap-2 px-3 py-1 bg-feedback-success/15 text-feedback-success text-xs font-medium rounded-full mb-6">
-          ● Acesso gratuito por tempo limitado
+          ● {valorReal} · liberado de graça por tempo limitado
         </span>
         <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary leading-[1.05] tracking-tight">
-          A educação que sua locadora precisa pra parar de ser tocada no improviso.
+          O método que tirou +500 locadoras do improviso. Agora aberto pra você.
         </h1>
         <p class="mt-8 text-lg lg:text-xl text-text-secondary leading-relaxed">
-          LocAcademy é o primeiro curso digital 100% focado em donos e gestores de locadora
-          de equipamentos. Marketing, vendas e gestão sem teoria de palestra.
+          LocAcademy é o primeiro curso 100% feito pra dono de locadora de equipamentos.
+          7 anos da ODuo aplicando o que funciona — gestão, vendas e marketing digital —
+          condensados em 3 módulos diretos ao ponto.
         </p>
         <div class="mt-10 flex flex-wrap gap-4">
-          <Button href="/cadastro" size="lg">Acessar gratuitamente</Button>
+          <Button href="/cadastro" size="lg">Quero acessar agora</Button>
           <Button href="/curso" variant="outline" size="lg">Ver o que tem dentro</Button>
         </div>
         <p class="mt-6 text-sm text-text-muted">
-          Valor de {valorReal} · <strong class="text-text-primary">gratuito enquanto durar essa fase</strong> · Acesso imediato após cadastro
+          Sem cartão · Sem pegadinha · Acesso imediato no seu e-mail
         </p>
       </div>
 
@@ -179,16 +180,12 @@ const courseJsonLd = {
     <div class="container-page relative">
       <div class="max-w-3xl mb-16">
         <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
-          Locação não cresce no improviso. E você sabe disso.
+          Toda locadora trava nos mesmos 3 lugares. Você reconhece?
         </h2>
         <p class="text-lg text-text-secondary leading-relaxed">
-          A maioria das locadoras desse país é tocada no chute. Preço de diária definido por feeling.
-          Cliente captado por indicação. Marketing que se resume ao "Vou postar uma foto no Instagram
-          quando lembrar". E aí o dono passa o mês inteiro correndo atrás, sem entender por que o
-          faturamento não anda.
-        </p>
-        <p class="text-lg text-text-primary font-medium mt-4">
-          Não é falta de esforço. É falta de método.
+          A gente entra em 30 locadoras por mês na ODuo. E todas têm os mesmos buracos —
+          quem cresce é quem decide tampar. Antes de te falar do conteúdo do curso,
+          olha se você se enxerga aqui:
         </p>
       </div>
 
@@ -210,9 +207,14 @@ const courseJsonLd = {
   <section class="section">
     <div class="container-page">
       <div class="max-w-3xl mb-16">
+        <span class="inline-block text-brand-accent text-sm font-mono mb-3">O QUE TEM DENTRO</span>
         <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
-          3 módulos. Direto ao ponto. Sem encheção.
+          3 módulos. 15 aulas. Zero teoria de palestra.
         </h2>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Cada módulo é o que a ODuo aplica todo dia dentro dos clientes. Você assiste,
+          aplica na sua locadora na mesma semana, e vê resultado.
+        </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
@@ -248,8 +250,9 @@ const courseJsonLd = {
   <section class="section bg-bg-elevated/30">
     <div class="container-page">
       <div class="max-w-3xl mb-16">
+        <span class="inline-block text-brand-accent text-sm font-mono mb-3">QUEM ENSINA</span>
         <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
-          Quem tá do outro lado da câmera.
+          Não é professor de business school. É quem tá na operação todo dia.
         </h2>
       </div>
 
@@ -274,8 +277,8 @@ const courseJsonLd = {
 
       <blockquote class="max-w-3xl mx-auto mt-16 text-center">
         <p class="text-xl text-text-secondary italic leading-relaxed">
-          "Não somos professor de business school. Somos a galera que cuida de mais de 100 locadoras
-          no Brasil. O conteúdo aqui é o que a gente vê funcionando todo dia."
+          "A gente atende +500 locadoras no Brasil. Tudo que tá no LocAcademy é o que a gente
+          aplica dentro dessas operações pra fazer elas crescerem. Não é teoria. É o método."
         </p>
       </blockquote>
     </div>
@@ -285,8 +288,9 @@ const courseJsonLd = {
   <section class="section">
     <div class="container-page">
       <div class="max-w-3xl">
+        <span class="inline-block text-brand-accent text-sm font-mono mb-3">PRA QUEM É</span>
         <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-10">
-          Esse curso é pra você se…
+          O LocAcademy é seu se você se enxerga em alguma dessas:
         </h2>
         <ul class="space-y-4">
           {
@@ -304,11 +308,15 @@ const courseJsonLd = {
           <ul class="space-y-3">
             <li class="flex gap-4 text-text-muted">
               <span class="text-feedback-error">✗</span>
-              <span>Você quer fórmula mágica de enriquecer em 30 dias</span>
+              <span>Procura fórmula mágica de dobrar faturamento em 30 dias</span>
             </li>
             <li class="flex gap-4 text-text-muted">
               <span class="text-feedback-error">✗</span>
-              <span>Você não tá disposto a sentar pra estudar 30 minutos por dia</span>
+              <span>Não tá disposto a dedicar 30 minutos por dia pra aplicar o que aprende</span>
+            </li>
+            <li class="flex gap-4 text-text-muted">
+              <span class="text-feedback-error">✗</span>
+              <span>Acha que "marketing é só rede social" e que "vendas é só preço bom"</span>
             </li>
           </ul>
         </div>
@@ -320,9 +328,14 @@ const courseJsonLd = {
   <section class="section bg-bg-elevated/30">
     <div class="container-page">
       <div class="max-w-3xl mb-16">
+        <span class="inline-block text-brand-accent text-sm font-mono mb-3">QUEM ESTÁ POR TRÁS</span>
         <h2 class="text-3xl lg:text-5xl font-bold text-text-primary mb-6">
-          Não é teoria. É o que funciona dentro das locadoras que cuidamos.
+          A casa que mais entende de locadora no Brasil.
         </h2>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          O LocAcademy não nasceu numa sala de aula. Nasceu dentro da ODuo, depois de
+          7 anos atendendo locadora todo dia. Os números falam por si:
+        </p>
       </div>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
