@@ -5,18 +5,22 @@ interface Props {
 
 const { size = 'md' } = Astro.props;
 
-const sizeClasses = {
-  sm: 'text-xl',
-  md: 'text-2xl',
-  lg: 'text-3xl',
+const sizes = {
+  sm: { img: 'h-7', text: 'text-base' },
+  md: { img: 'h-9', text: 'text-lg' },
+  lg: { img: 'h-12', text: 'text-2xl' },
 };
+
+const cls = sizes[size];
 ---
 
-<a href="/" class="flex flex-col leading-none">
-  <span class={`${sizeClasses[size]} font-bold tracking-tight text-text-primary`}>
-    LocAcademy
-  </span>
-  <span class="text-xs text-text-muted font-normal mt-0.5">
-    by ODuo
+<a href="/" class="inline-flex items-center gap-3 leading-none">
+  <img
+    src="/logos/oduo-white.png"
+    alt="ODuo"
+    class={`${cls.img} w-auto`}
+  />
+  <span class={`${cls.text} font-medium text-text-secondary tracking-tight`}>
+    Academy
   </span>
 </a>
